@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">MaterialDesign</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="nav_item_home">Home</string>
+    <string name="nav_item_friends">Friends</string>
+    <string name="nav_item_notifications">Messages</string>
+    <string name="nav_item_SampleCVs">Sample CVs</string>
+    <string name="nav_item_About">About</string>
+    <string name="nav_item_Feedback">Feedback</string>
+    <string name="nav_item_Logout">Logout</string>
+
+    <!-- navigation drawer item labels  -->
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_home</item>
+        <!--<item>@string/nav_item_friends</item>-->
+        <!--<item>@string/nav_item_notifications</item>-->
+        <item>@string/nav_item_SampleCVs</item>
+        <item>@string/nav_item_About</item>
+        <item>@string/nav_item_Feedback</item>
+        <item>@string/nav_item_Logout</item>
+    </string-array>
+
+    <string name="title_messages">Messages</string>
+    <string name="title_friends">Friends</string>
+    <string name="title_home">Home</string>
+    <string name="title_SampleCVs">SampleCVs</string>
+    <string name="title_About">About</string>
+    <string name="title_Feedback">Feedback</string>
+
+    <!--Register and Login -->
+
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_cpassword">Confirm Password</string>
+    <string name="hint_fname">First name</string>
+    <string name="hint_lname">Last name</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_register">REGISTER</string>
+    <string name="btn_link_to_register">Not a member? Sign up now.</string>
+    <string name="btn_link_to_login">Already registred! Login Me.</string>
+    <string name="welcome">Welcome</string>
+    <string name="btn_logout">LOGOUT</string>
+    <string name="name">Fullname</string>
+
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="kinvey_account">Kinvey</string>
+    <!--Register and Login ends -->
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
