@@ -3,6 +3,7 @@ package activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             case 0:
                 fragment = new HomeFragment();
                 title = getString(R.string.title_home);
+
                 break;
             case 1:
                 fragment = new SampleCVsFragment();

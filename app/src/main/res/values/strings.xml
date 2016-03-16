@@ -51,6 +51,29 @@
     <string name="kinvey_account">Kinvey</string>
     <!--Register and Login ends -->
 
+    <!--Personal Information Form Starts -->
+
+    <string name="hint_name">Full Name</string>
+    <string name="hint_dob">Date Of Birth</string>
+    <string name="btn_save">Save &amp; Proceed</string>
+    <string name="err_msg_name">Enter your full name</string>
+    <string name="err_msg_email">Enter valid email address</string>
+    <string name="err_msg_password">Enter the password</string>
+    <string name="hint_address">Address</string>
+    <string name="hint_contact">Contact No.</string>
+    <string name="btn_date">Pick Your Date Of Birth</string>
+
+
+    <string name="hello_world">Hello world!</string>
+
+    <string name="date_button_set">Set Date</string>
+    <string name="date_view_set">The Date is: </string>
+    <string name="date_selected"></string>
+
+
+    <!--Personal Information Form ends -->
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
