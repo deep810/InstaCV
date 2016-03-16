@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -15,8 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vishwashrisairm.materialdesign.R;
+import com.kinvey.android.offline.DatabaseHandler;
 
 import java.util.Calendar;
+import java.util.List;
+
+import database.PersonalInfo;
+import helper.PInfoDbHandler;
 
 /**
  * Created by vishwashrisairm on 15/3/16.
@@ -37,6 +43,8 @@ public class FormPersonal extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_personal);
+
+
 
         final Calendar cal=Calendar.getInstance();
         year_x=cal.get(Calendar.YEAR);
@@ -104,21 +112,32 @@ public class FormPersonal extends AppCompatActivity {
 
     };
 
-    /**
-     * Validating form
-     */
-    private void submitForm() {
-
-    }
-
-
-
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         //getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
+    /**
+     * Validating form
+     */
+    private void submitForm() {
+        PInfoDbHandler db = new PInfoDbHandler(this,"",null,1);
+//        db.addPInfo(new PersonalInfo(inputpName.getEditText().toString(),inputLayoutaddress.getEditText().toString()
+//        ,inputLayoutdob.getEditText().toString(),inputLayoutpName.getEditText().toString(),inputLayoutpName.getEditText().toString()));
+        db.addPInfo(new PersonalInfo(1,"abc","asdad","23/12/2314","fwefwef","fefwfew"));
+        db.addPInfo(new PersonalInfo(2,"abcde","asdfd","23/1/2314","asddad","few"));
+        Log.d("Insert", "Inserting..,");
+
+        List<PersonalInfo> p = db.getAllPInfo();
+        for (PersonalInfo pi : p) {
+            String log = "Id: " + pi.get_id() + " ,Name: " + pi.get_fullname() + " ,Contact: " + pi.get_contact();
+            // Writing Contacts to log
+            Log.d("Name: ", log);
+        }
+
+    }
+
+
 }
