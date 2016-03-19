@@ -21,6 +21,7 @@ import com.kinvey.android.offline.DatabaseHandler;
 import java.util.Calendar;
 import java.util.List;
 
+import database.EduInfo;
 import database.PersonalInfo;
 import helper.PInfoDbHandler;
 
@@ -126,8 +127,13 @@ public class FormPersonal extends AppCompatActivity {
         PInfoDbHandler db = new PInfoDbHandler(this,"",null,1);
 //        db.addPInfo(new PersonalInfo(inputpName.getEditText().toString(),inputLayoutaddress.getEditText().toString()
 //        ,inputLayoutdob.getEditText().toString(),inputLayoutpName.getEditText().toString(),inputLayoutpName.getEditText().toString()));
-        db.addPInfo(new PersonalInfo(1,"abc","asdad","23/12/2314","fwefwef","fefwfew"));
-        db.addPInfo(new PersonalInfo(2,"abcde","asdfd","23/1/2314","asddad","few"));
+        db.addPInfo(new PersonalInfo(1, "abc", "asdad", "23/12/2314", "fwefwef", "fefwfew", "abc"));
+     //   db.addPInfo(new PersonalInfo(2,"abcde","asdfd","23/1/2314","asddad","few","abc"));
+        db.addEInfo(new EduInfo(1,5, "edu1", "abc", "xyz", "dwqd"));
+//        db.deletePInfo(db.getPInfo(1));
+        db.deleteEInfo(db.getEInfo(1));
+
+//      Queries for testing
         Log.d("Insert", "Inserting..,");
 
         List<PersonalInfo> p = db.getAllPInfo();
@@ -137,6 +143,12 @@ public class FormPersonal extends AppCompatActivity {
             Log.d("Name: ", log);
         }
 
+        List<EduInfo> e=db.getAllEInfo();
+        for (EduInfo pi : e) {
+            String log = "Id: " + pi.get_id() + " ,Name: " + pi.get_degree() + " ,Contact: " + pi.get_cgpa();
+            // Writing Contacts to log
+            Log.d("Edu: ", log);
+        }
     }
 
 

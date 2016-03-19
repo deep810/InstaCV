@@ -8,20 +8,29 @@ import activity.SampleCVsFragment;
 public class PersonalInfo {
     //private variables
     int _id;
-    String _fullname,_address,_dob,_contact,_email;
+    String _fullname,_address,_dob,_contact,_email,_objective;
 
     //Empty constructor
     public PersonalInfo(){
 
     }
 
-    public PersonalInfo(int id,String fname, String add,String dob,String cont,String email){
+    public PersonalInfo(int id,String fname, String add,String dob,String cont,String email,String objective){
         this._id=id;
         this._fullname=fname;
         this._address=add;
         this._dob=dob;
         this._contact=cont;
         this._email=email;
+        this._objective=objective;
+    }
+
+    public String get_objective() {
+        return _objective;
+    }
+
+    public void set_objective(String _objective) {
+        this._objective = _objective;
     }
 
     public int get_id() {
