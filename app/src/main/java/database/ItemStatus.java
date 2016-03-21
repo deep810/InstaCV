@@ -11,8 +11,8 @@ public class ItemStatus {
 
     }
 
-    public ItemStatus(int id,String title,int ps,int es,int prs,int ss,int ref,int exc){
-        this._item_id=id;
+    public ItemStatus(String title,int ps,int es,int prs,int ss,int ref,int exc){
+       // this._item_id=id;
         this.title=title;
         this._personalstatus=ps;
         this._edustatus=es;

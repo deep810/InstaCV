@@ -2,10 +2,13 @@ package activity;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -20,6 +23,7 @@ import com.kinvey.android.offline.DatabaseHandler;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import database.EduInfo;
 import database.ItemStatus;
@@ -76,6 +80,55 @@ public class FormPersonal extends AppCompatActivity {
 
 
 
+        /*inputpName.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                hasText(inputpName);
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });*/
+        inputpName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus)
+                Validation.hasText(inputpName);
+            }
+        });
+        inputaddress.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus)
+                Validation.hasText(inputaddress);
+            }
+        });
+        inputdob.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus)
+                Validation.hasText(inputdob);
+            }
+        });
+        inputcontact.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                    Validation.isPhoneNumber(inputcontact,true);
+            }
+        });
+        inputemail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus)
+                Validation.isEmailAddress(inputemail,true);
+            }
+        });
+
+
+
+
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,6 +174,7 @@ public class FormPersonal extends AppCompatActivity {
         //getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
 
     /**
      * Validating form
