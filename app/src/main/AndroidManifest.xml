@@ -87,6 +87,7 @@
             </intent-filter>
         </activity>
 
+
       <!--  Kinvey Signin and register ends -->
     </application>
 

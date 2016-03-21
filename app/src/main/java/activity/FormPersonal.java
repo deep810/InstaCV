@@ -22,7 +22,9 @@ import java.util.Calendar;
 import java.util.List;
 
 import database.EduInfo;
+import database.ItemStatus;
 import database.PersonalInfo;
+import database.ProjectInfo;
 import helper.PInfoDbHandler;
 
 /**
@@ -129,12 +131,38 @@ public class FormPersonal extends AppCompatActivity {
 //        ,inputLayoutdob.getEditText().toString(),inputLayoutpName.getEditText().toString(),inputLayoutpName.getEditText().toString()));
         db.addPInfo(new PersonalInfo(1, "abc", "asdad", "23/12/2314", "fwefwef", "fefwfew", "abc"));
      //   db.addPInfo(new PersonalInfo(2,"abcde","asdfd","23/1/2314","asddad","few","abc"));
-        db.addEInfo(new EduInfo(1,5, "edu1", "abc", "xyz", "dwqd"));
+        //db.addEInfo(new EduInfo(1, 5, "edu1", "abc", "xyz", "dwqd"));
 //        db.deletePInfo(db.getPInfo(1));
-        db.deleteEInfo(db.getEInfo(1));
+       // db.deleteEInfo(db.getEInfo(1));
+
+
+        ProjectInfo i = new ProjectInfo(1,5,"project1","surat","3/2/15","cvxvsd","student");
+
+        db.addPRInfo(i);
+
+        ProjectInfo a = db.getPRInfo(2);
+        String log ="Id: "+a.get_id()+"  ,proid: "+a.get_proid()+" ,title: "+a.get_title()+" ,location: "+
+                    a.get_location()+" ,time: "+a.get_time()+" ,desig: "+a.get_desig()+" ,desc: "+a.get_desc();
+        Log.d("Project Table: ", log);
+        List<ProjectInfo> b = db.getAllPRInfo();
+        for(ProjectInfo x : b){
+            log ="Id: "+x.get_id()+"  ,proid: "+x.get_proid()+" ,title: "+x.get_title()+" ,location: "+
+                    x.get_location()+" ,time: "+x.get_time()+" ,desig: "+x.get_desig()+" ,desc: "+x.get_desc();
+            Log.d("Status Table: ",log);
+        }
+
+       /* db.updateStatus(new ItemStatus(1, "Jhon", 0, 0, 0, 0, 0, 0));
+
+       ItemStatus a = db.getStatus(1);
+        String log ="Id: "+a.get_item_id()+" ,Title: "+a.getTitle() + " ,personal_status: "+a.get_personalstatus()+" ,edustatus: "+a.get_edustatus()+" ,_prostatus: " +a.get_prostatus()+
+                " ,skillstatus: "+a.get_skillstatus()+" ,refstatus: "+a.get_refstatus()+" ,excurstatus: "+a.get_excurstatus();
+        Log.d("Status Table: ",log);*/
+        db.deletePRInfo(i);
+
+
 
 //      Queries for testing
-        Log.d("Insert", "Inserting..,");
+        /*Log.d("Insert", "Inserting..,");
 
         List<PersonalInfo> p = db.getAllPInfo();
         for (PersonalInfo pi : p) {
@@ -148,7 +176,7 @@ public class FormPersonal extends AppCompatActivity {
             String log = "Id: " + pi.get_id() + " ,Name: " + pi.get_degree() + " ,Contact: " + pi.get_cgpa();
             // Writing Contacts to log
             Log.d("Edu: ", log);
-        }
+        }*/
     }
 
 

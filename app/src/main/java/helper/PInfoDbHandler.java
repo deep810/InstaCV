@@ -357,7 +357,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
     }
 
     //get single entry
-    SkillsInfo getSInfo(int id) {
+    public SkillsInfo getSInfo(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_SINFO, new String[] { "item_id","skillid","nameofskill","prof"
@@ -451,6 +451,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put("item_id", pr.get_id());
         values.put("proid", pr.get_proid());
         values.put("title", pr.get_title());
         values.put("location", pr.get_time());
@@ -466,11 +467,11 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
     }
 
     //get single entry
-    ProjectInfo getPRInfo(int id) {
+    public ProjectInfo getPRInfo(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_PRINFO, new String[] { "item_id","proid","title","location","time","desig","desc"
-                }, "proidid" + "=?",
+                }, "proid" + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
@@ -538,7 +539,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
     public void deletePRInfo(ProjectInfo pr) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_PRINFO, " proid= ?",
-                new String[]{String.valueOf(pr.get_id())});
+                new String[]{String.valueOf(pr.get_proid())});
         db.close();
     }
 
@@ -802,12 +803,12 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
 
 
         // Inserting Row
-        db.insert(TABLE_RINFO, null, values);
+        db.insert(TABLE_STATUS, null, values);
         db.close(); // Closing database connection
     }
 
     //get single entry
-    ItemStatus getStatus(int id) {
+    public ItemStatus getStatus(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_STATUS, new String[] { "item_id","title","per_status","edu_status","pro_status","skill_status","excur_status"
@@ -861,6 +862,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put("item_id", r.get_item_id());
+        values.put("title", r.getTitle());
         values.put("title", r.getTitle());
         values.put("per_status", r.get_personalstatus());
         values.put("edu_status", r.get_edustatus());
