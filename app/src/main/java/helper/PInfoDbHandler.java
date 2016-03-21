@@ -63,7 +63,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
 
         String CREATE_EINFO_TABLE="CREATE TABLE "+TABLE_EINFO+"("
                 +"item_id"+" INTEGER,"
-                +"edu_id" +" INTEGER PRIMARY KEY,"
+                +"edu_id" +" INTEGER PRIMARY KEY AUTOINCREMENT,"
                 +"degree"+" TEXT,"
                 +"yop"+" TEXT,"
                 +"cgpa"+" TEXT,"
@@ -72,7 +72,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
 
         String CREATE_SINFO_TABLE="CREATE TABLE "+TABLE_SINFO+"("
                 +"item_id"+" INTEGER,"
-                +"skilid" +" INTEGER PRIMARY KEY,"
+                +"skillid" +" INTEGER PRIMARY KEY AUTOINCREMENT,"
                 +"nameofskill"+" TEXT,"
                 +"prof"+" TEXT,"
                 +"FOREIGN KEY(item_id) REFERENCES "+TABLE_STATUS+"(item_id))";
@@ -89,7 +89,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
 
         String CREATE_CINFO_TABLE="CREATE TABLE "+TABLE_CINFO+"("
                 +"item_id"+" INTEGER,"
-                +"currid" +" INTEGER PRIMARY KEY,"
+                +"currid" +" INTEGER PRIMARY KEY AUTOINCREMENT,"
                 +"name"+" TEXT,"
                 +"FOREIGN KEY(item_id) REFERENCES "+TABLE_STATUS+"(item_id))";
 
@@ -237,7 +237,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put("item_id",e.get_id());
-        values.put("edu_id", e.get_eduid());
+    //    values.put("edu_id", e.get_eduid());
         values.put("degree", e.get_degree());
         values.put("yop", e.get_yop());
         values.put("cgpa", e.get_cgpa());
@@ -341,11 +341,11 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
     * */
 
     //Add values to the table
-    public void addPInfo(SkillsInfo s) {
+    public void addSInfo(SkillsInfo s) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("skillid", s.get_skillid());
+        values.put("item_id", s.get_id());
         values.put("nameofskill", s.get_nameofskill());
         values.put("prof", s.get_prof());
 
@@ -414,14 +414,14 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
 
         // updating row
         return db.update(TABLE_SINFO, values,  "skillid = ?",
-                new String[] { String.valueOf(s.get_id()) });
+                new String[] { String.valueOf(s.get_skillid()) });
     }
 
     // Deleting single info
     public void deleteSInfo(SkillsInfo s) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_SINFO, " skillid= ?",
-                new String[]{String.valueOf(s.get_id())});
+                new String[]{String.valueOf(s.get_skillid())});
         db.close();
     }
 
@@ -567,7 +567,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("currid", c.get_currid());
+       values.put("item_id", c.get_id());
         values.put("name", c.get_name());
 
 
@@ -579,7 +579,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
     }
 
     //get single entry
-    CurrInfo getCInfo(int id) {
+    public CurrInfo getCInfo(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_CINFO, new String[] { "item_id","currid","name"
@@ -613,10 +613,6 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
                 c.set_currid(Integer.parseInt(cursor.getString(1)));
                 c.set_name(cursor.getString(2));
 
-
-
-
-
                 List.add(c);
             } while (cursor.moveToNext());
         }
@@ -636,13 +632,13 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
 
         // updating row
         return db.update(TABLE_CINFO, values,  "currid = ?",
-                new String[] { String.valueOf(c.get_id()) });
+                new String[] { String.valueOf(c.get_currid()) });
     }
 
     // Deleting single info
     public void deleteCInfo(CurrInfo c) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_PRINFO, " currid= ?",
+        db.delete(TABLE_CINFO, " currid= ?",
                 new String[]{String.valueOf(c.get_id())});
         db.close();
     }
