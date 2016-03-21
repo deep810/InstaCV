@@ -21,8 +21,10 @@ import com.kinvey.android.offline.DatabaseHandler;
 import java.util.Calendar;
 import java.util.List;
 
+import database.CurrInfo;
 import database.EduInfo;
 import database.PersonalInfo;
+import database.SkillsInfo;
 import helper.PInfoDbHandler;
 
 /**
@@ -127,27 +129,62 @@ public class FormPersonal extends AppCompatActivity {
         PInfoDbHandler db = new PInfoDbHandler(this,"",null,1);
 //        db.addPInfo(new PersonalInfo(inputpName.getEditText().toString(),inputLayoutaddress.getEditText().toString()
 //        ,inputLayoutdob.getEditText().toString(),inputLayoutpName.getEditText().toString(),inputLayoutpName.getEditText().toString()));
-        db.addPInfo(new PersonalInfo(1, "abc", "asdad", "23/12/2314", "fwefwef", "fefwfew", "abc"));
-     //   db.addPInfo(new PersonalInfo(2,"abcde","asdfd","23/1/2314","asddad","few","abc"));
-        db.addEInfo(new EduInfo(1,5, "edu1", "abc", "xyz", "dwqd"));
+
+
+//        Add queries
+//        db.addPInfo(new PersonalInfo(1, "abc", "asdad", "23/12/2314", "fwefwef", "fefwfew", "abc"));
+//      db.addEInfo(new EduInfo(1,2, "edu1", "abc", "xyz", "dwqd"));
+//        db.addCInfo(new CurrInfo(1,1,"play chess"));
+//        db.addSInfo(new SkillsInfo(1,1,"beg","HTML"));
+;
+
+
+//Delete queries
 //        db.deletePInfo(db.getPInfo(1));
-        db.deleteEInfo(db.getEInfo(1));
+//        db.deleteEInfo(db.getEInfo(1));
+//          db.deleteCInfo(db.getCInfo(2));
+//        db.deleteSInfo(db.getSInfo(4));
 
 //      Queries for testing
         Log.d("Insert", "Inserting..,");
 
-        List<PersonalInfo> p = db.getAllPInfo();
-        for (PersonalInfo pi : p) {
-            String log = "Id: " + pi.get_id() + " ,Name: " + pi.get_fullname() + " ,Contact: " + pi.get_contact();
-            // Writing Contacts to log
-            Log.d("Name: ", log);
-        }
+//Update queries
+//        PersonalInfo ptest=db.getPInfo(1);
+//        ptest.set_fullname("xyz");
+//        db.updatePInfo(ptest);
 
-        List<EduInfo> e=db.getAllEInfo();
-        for (EduInfo pi : e) {
-            String log = "Id: " + pi.get_id() + " ,Name: " + pi.get_degree() + " ,Contact: " + pi.get_cgpa();
+//        EduInfo etest=db.getEInfo(2);
+//        etest.set_degree("btech");
+//        db.updateEInfo(etest);
+
+//         CurrInfo ctest=db.getCInfo(5);
+//         ctest.set_name("music");
+//         db.updateCInfo(ctest);
+           SkillsInfo stest=db.getSInfo(9);
+           stest.set_nameofskill("JS");
+           db.updateSInfo(stest);
+
+//        Display all queries
+//        List<PersonalInfo> p = db.getAllPInfo();
+//        for (PersonalInfo pi : p) {
+//            String log = "Id: " + pi.get_id() + " ,Name: " + pi.get_fullname() + " ,Contact: " + pi.get_contact();
+//            // Writing Contacts to log
+//            Log.d("Name: ", log);
+//        }
+//
+//        List<EduInfo> e=db.getAllEInfo();
+//        for (EduInfo pi : e) {
+//            String log = "Id: " + pi.get_eduid() + " ,Degree: " + pi.get_degree() + " ,Cgpa: " + pi.get_cgpa();
+//            // Writing Contacts to log
+//            Log.d("Edu: ", log);
+//        }
+
+//
+        List<SkillsInfo> s=db.getAllSInfo();
+        for (SkillsInfo pi : s) {
+            String log = "Id: " + pi.get_skillid() + " ,Name: " + pi.get_nameofskill()+",Proficiency: "+pi.get_prof() ;
             // Writing Contacts to log
-            Log.d("Edu: ", log);
+            Log.d("Skills: ", log);
         }
     }
 
