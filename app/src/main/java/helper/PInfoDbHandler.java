@@ -41,7 +41,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE_STATUS="CREATE TABLE "+TABLE_STATUS+"("
-                +"item_id" +" INTEGER PRIMARY KEY,"
+                +"item_id" +" INTEGER PRIMARY KEY AUTOINCREMENT,"
                 +"title"+" TEXT,"
                 +"per_status"+" INTEGER,"
                 +"edu_status"+" INTEGER,"
@@ -785,7 +785,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("item_id", r.get_item_id());
+        //values.put("item_id", r.get_item_id());
         values.put("title", r.getTitle());
         values.put("per_status", r.get_personalstatus());
         values.put("edu_status", r.get_edustatus());
@@ -813,7 +813,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
-        ItemStatus item = new ItemStatus(Integer.parseInt(cursor.getString(0)), cursor.getString(1),Integer.parseInt(cursor.getString(2)),
+        ItemStatus item = new ItemStatus(cursor.getString(1),Integer.parseInt(cursor.getString(2)),
                 Integer.parseInt(cursor.getString(3)),Integer.parseInt(cursor.getString(4)),Integer.parseInt(cursor.getString(5)),Integer.parseInt(cursor.getString(6))
         ,Integer.parseInt(cursor.getString(7)));
         // return contact

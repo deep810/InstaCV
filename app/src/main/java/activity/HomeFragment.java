@@ -10,21 +10,30 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
+<<<<<<< HEAD
 import android.util.Log;
+=======
+import android.util.TypedValue;
+>>>>>>> 5afc42cb494d7baaeaf7d3680e84f01d95141a40
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.vishwashrisairm.materialdesign.R;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
 import adapter.HomeRecyclerViewAdapter;
 import database.ItemStatus;
 import database.PersonalInfo;
+=======
+import database.ItemStatus;
+>>>>>>> 5afc42cb494d7baaeaf7d3680e84f01d95141a40
 import helper.PInfoDbHandler;
 
 /**
@@ -82,21 +91,29 @@ public class HomeFragment extends Fragment {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Title");
 
-// Set up the input
+                // Set up the input
                 final EditText input = new EditText(getActivity());
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
                 input.setInputType(InputType.TYPE_CLASS_TEXT);
                 builder.setView(input);
 
-// Set up the buttons
+                // Set up the buttons
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+<<<<<<< HEAD
                         String m_Text = input.getText().toString();
                         // PInfoDbHandler db = new PInfoDbHandler();
                         //ItemStatus s = new ItemStatus()
                         //db.addStatus();
                         Intent i = new Intent(getActivity(), FormPersonal.class);
+=======
+                        String m_text = input.getText().toString();
+                        PInfoDbHandler db = new PInfoDbHandler(getActivity(),"",null,1);
+                        ItemStatus s = new ItemStatus(m_text,0,0,0,0,0,0);
+                        db.addStatus(s);
+                        Intent i = new Intent(getActivity(),FormPersonal.class);
+>>>>>>> 5afc42cb494d7baaeaf7d3680e84f01d95141a40
                         startActivity(i);
                     }
                 });
