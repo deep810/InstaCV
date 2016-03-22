@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +19,23 @@ import android.widget.TextView;
 
 import com.example.vishwashrisairm.materialdesign.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import adapter.HomeRecyclerViewAdapter;
+import database.ItemStatus;
+import database.PersonalInfo;
+import helper.PInfoDbHandler;
+
 /**
  * Created by vishwashrisairm on 23/2/16.
  */
 public class HomeFragment extends Fragment {
 
-
+//
+    private RecyclerView hRecyclerView;
+    private RecyclerView.Adapter hAdapter;
+    private RecyclerView.LayoutManager hLayoutManager;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -31,23 +45,35 @@ public class HomeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Click action
-//                Intent intent = new Intent(HomeFragment.this, SampleCVsFragment.class);
-//                startActivity(intent);
-//            }
-//        });
 
 
     }
 
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public void onResume() {
+        super.onResume();
+        ((HomeRecyclerViewAdapter)hAdapter).setOnItemClickListener(new HomeRecyclerViewAdapter
+                .MyClickListener() {
+            @Override
+            public void onItemClick(int position, View v) {
+                Log.i("HomeRecyclerView:-", " Clicked on Item " + position);
+            }
+        });
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+
+        hRecyclerView=(RecyclerView)rootView.findViewById(R.id.homeRecyclerView);
+        hRecyclerView.setHasFixedSize(true);
+        hLayoutManager=new LinearLayoutManager(this.getContext());
+        hRecyclerView.setLayoutManager(hLayoutManager);
+        hAdapter=new HomeRecyclerViewAdapter(getDataSet());
+        hRecyclerView.setAdapter(hAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +96,7 @@ public class HomeFragment extends Fragment {
                         // PInfoDbHandler db = new PInfoDbHandler();
                         //ItemStatus s = new ItemStatus()
                         //db.addStatus();
-                        Intent i = new Intent(getActivity(),FormPersonal.class);
+                        Intent i = new Intent(getActivity(), FormPersonal.class);
                         startActivity(i);
                     }
                 });
@@ -102,7 +128,17 @@ public class HomeFragment extends Fragment {
     }
 
 
+    private List<ItemStatus> getDataSet() {
+        PInfoDbHandler db = new PInfoDbHandler(this.getContext(),"",null,1);
+        List<ItemStatus> i = db.getAllStatus();
+        for (ItemStatus item : i) {
+            String log = "Id: " + item.getTitle() + " ,Name: " + item.get_item_id() ;
+            // Writing Contacts to log
+            Log.d("Name: ", log);
+        }
 
+        return i;
+    }
 
 
 

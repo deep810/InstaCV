@@ -217,7 +217,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    // Getting contacts Count
+    // Getting  Count
     public int getPInfoCount() {
         String countQuery = "SELECT  * FROM " + TABLE_PINFO;
         SQLiteDatabase db = this.getReadableDatabase();
