@@ -116,6 +116,11 @@ public class FormExcr extends AppCompatActivity {
         return i;
     }
 
+    public void submitForm(View view) {
+        Intent intent = new Intent(this,FormExcr.class);
+        startActivity(intent);
+
+    }
 
 }
 
