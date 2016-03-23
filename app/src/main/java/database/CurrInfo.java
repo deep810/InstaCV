@@ -16,9 +16,9 @@ public class CurrInfo {
     }
 
 
-    public CurrInfo(int id, int currid, String name) {
+    public CurrInfo(int id, String name) {
         this._id = id;
-        this._currid = currid;
+//        this._currid = currid;
         this._name = name;
     }
 
