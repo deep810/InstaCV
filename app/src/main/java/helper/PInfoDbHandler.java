@@ -452,7 +452,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put("item_id", pr.get_id());
-        values.put("proid", pr.get_proid());
+//        values.put("proid", pr.get_proid());
         values.put("title", pr.get_title());
         values.put("location", pr.get_time());
         values.put("time", pr.get_time());
@@ -477,7 +477,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
             cursor.moveToFirst();
 
         ProjectInfo pr = new ProjectInfo(Integer.parseInt(cursor.getString(0)),
-                Integer.parseInt(cursor.getString(1)), cursor.getString(2),cursor.getString(3), cursor.getString(4),cursor.getString(5), cursor.getString(6));
+                 cursor.getString(1),cursor.getString(2), cursor.getString(3),cursor.getString(4), cursor.getString(5));
         // return contact
         return pr;
     }

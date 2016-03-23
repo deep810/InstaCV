@@ -15,8 +15,8 @@ public class ProjectInfo {
 
     }
 
-    public ProjectInfo(int id, int proid, String title, String location, String time, String desc, String desig) {
-        this._proid = proid;
+    public ProjectInfo(int id, String title, String location, String time, String desig, String desc) {
+//        this._proid = proid;
         this._id = id;
         this._title = title;
         this._location = location;
