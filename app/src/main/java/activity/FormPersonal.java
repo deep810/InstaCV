@@ -3,6 +3,7 @@ package activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -181,9 +182,10 @@ public class FormPersonal extends AppCompatActivity {
      */
     private void submitForm() {
         PInfoDbHandler db = new PInfoDbHandler(this,"",null,1);
-//        db.addPInfo(new PersonalInfo(inputpName.getEditText().toString(),inputLayoutaddress.getEditText().toString()
+
+// db.addPInfo(new PersonalInfo(inputpName.getEditText().toString(),inputLayoutaddress.getEditText().toString()
 //        ,inputLayoutdob.getEditText().toString(),inputLayoutpName.getEditText().toString(),inputLayoutpName.getEditText().toString()));
-        db.addPInfo(new PersonalInfo(1, "abc", "asdad", "23/12/2314", "fwefwef", "fefwfew", "abc"));
+//        db.addPInfo(new PersonalInfo(1, "abc", "asdad", "23/12/2314", "fwefwef", "fefwfew", "abc"));
      //   db.addPInfo(new PersonalInfo(2,"abcde","asdfd","23/1/2314","asddad","few","abc"));
         //db.addEInfo(new EduInfo(1, 5, "edu1", "abc", "xyz", "dwqd"));
 //        db.deletePInfo(db.getPInfo(1));
@@ -233,6 +235,10 @@ public class FormPersonal extends AppCompatActivity {
             // Writing Contacts to log
             Log.d("Edu: ", log);
         }*/
+
+
+        Intent i = new Intent(this,FormEdu.class);
+        startActivity(i);
     }
 
 

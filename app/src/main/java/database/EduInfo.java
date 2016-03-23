@@ -15,9 +15,9 @@ public class EduInfo {
 
     }
 
-    public EduInfo(int id,int eduid, String degree,String yop,String cgpa,String institute){
+    public EduInfo(int id, String degree,String yop,String cgpa,String institute){
         this._id=id;
-        this._eduid=eduid;
+//        this._eduid=eduid;
         this._degree=degree;
         this._yop=yop;
         this._cgpa=cgpa;
