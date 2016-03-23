@@ -588,8 +588,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
-        CurrInfo pr = new CurrInfo(Integer.parseInt(cursor.getString(0)),
-                Integer.parseInt(cursor.getString(1)), cursor.getString(2));
+        CurrInfo pr = new CurrInfo(Integer.parseInt(cursor.getString(0)), cursor.getString(1));
         // return contact
         return pr;
     }
