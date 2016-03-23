@@ -141,7 +141,7 @@ public class FormPro extends AppCompatActivity {
     }
 
     public void submitForm(View view) {
-        Log.i("submit", "form");
-
+        Intent intent = new Intent(this,FormSkill.class);
+        startActivity(intent);
     }
 }

@@ -78,9 +78,11 @@
         </activity>
         <!-- Form Education Activity ends-->
 
-        <!--Form Project Activity -->
+        <!--Form Projects Activity -->
+
         <activity
             android:name="activity.FormPro"
+
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -90,6 +92,22 @@
             </intent-filter>
         </activity>
         <!-- Form Project Activity ends-->
+
+
+        <!--Form Skills Activity -->
+
+        <activity
+            android:name="activity.FormSkill"
+
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- Form Skills Activity ends-->
 
 
         <service android:name="activity.KinveyAuthenticationService" >
