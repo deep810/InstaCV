@@ -30,7 +30,13 @@ import java.util.List;
 import adapter.HomeRecyclerViewAdapter;
 import database.ItemStatus;
 import database.PersonalInfo;
+
 import database.ItemStatus;
+
+
+import database.ItemStatus;
+
+
 import helper.PInfoDbHandler;
 
 /**
@@ -97,10 +103,6 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        String m_Text = input.getText().toString();
-                        // PInfoDbHandler db = new PInfoDbHandler();
-                        //ItemStatus s = new ItemStatus()
-                        //db.addStatus();
 
 
                         String m_text = input.getText().toString();
@@ -108,6 +110,7 @@ public class HomeFragment extends Fragment {
                         ItemStatus s = new ItemStatus(m_text,0,0,0,0,0,0);
 //                        db.addStatus(s);
                         Intent i = new Intent(getActivity(),FormPersonal.class);
+
                        startActivity(i);
                     }
                 });
