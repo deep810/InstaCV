@@ -367,7 +367,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
             cursor.moveToFirst();
 
         SkillsInfo s = new SkillsInfo(Integer.parseInt(cursor.getString(0)),
-                Integer.parseInt(cursor.getString(1)), cursor.getString(2),cursor.getString(3));
+                 cursor.getString(1),cursor.getString(2));
         // return contact
         return s;
     }

@@ -14,9 +14,9 @@ public class SkillsInfo {
 
     }
 
-    public SkillsInfo(int id,int skillid, String prof, String nameofskill) {
+    public SkillsInfo(int id, String prof, String nameofskill) {
         this._id = id;
-        this._skillid = skillid;
+//        this._skillid = skillid;
         this._prof = prof;
         this._nameofskill = nameofskill;
     }

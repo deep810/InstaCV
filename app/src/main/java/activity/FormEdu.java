@@ -139,7 +139,10 @@ public class FormEdu extends AppCompatActivity {
     }
 
     public void submitForm(View view) {
-        Log.i("submit","form");
+
+        Intent i = new Intent(this,FormSkill.class);
+        startActivity(i);
+        //Log.i("submit","form");
 
     }
 }
