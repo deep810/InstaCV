@@ -1,11 +1,18 @@
 package adapter;
 
+import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,8 +20,10 @@ import com.example.vishwashrisairm.materialdesign.R;
 
 import java.util.List;
 
+import activity.FormExcr;
 import database.CurrInfo;
 import database.EduInfo;
+import helper.PInfoDbHandler;
 
 /**
  * Created by vishwashrisairm on 23/3/16.
@@ -39,6 +48,8 @@ public class ExcrRecyclerViewAdapter extends RecyclerView.Adapter<ExcrRecyclerVi
     @Override
     public void onBindViewHolder(DataObjectHolder holder, int position) {
         holder.t1.setText(excrDataset.get(position).get_name());
+        holder.item_id = excrDataset.get(position).get_id();
+        holder.extracurr_id = excrDataset.get(position).get_currid();
     }
 
 
@@ -52,6 +63,8 @@ public class ExcrRecyclerViewAdapter extends RecyclerView.Adapter<ExcrRecyclerVi
 
         TextView t1;
         Button b1, b2;
+        int item_id;
+        int extracurr_id;
 //        private MyClickListener eduClickListener;
 
         public DataObjectHolder(View itemView) {
@@ -66,6 +79,57 @@ public class ExcrRecyclerViewAdapter extends RecyclerView.Adapter<ExcrRecyclerVi
             itemView.setOnClickListener(this);
             b1.setOnClickListener(this);
             b2.setOnClickListener(this);
+
+            final View root = itemView;
+            root.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                    builder.setTitle("ExtraCurricular Activities");
+
+                    // Set up the input
+                    final EditText excra = new EditText(v.getContext());
+                    // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                    excra.setInputType(InputType.TYPE_CLASS_TEXT);
+                    excra.setText(t1.getText());
+
+
+
+                    LinearLayout ll=new LinearLayout(v.getContext());
+                    ll.setOrientation(LinearLayout.VERTICAL);
+                    ll.addView(excra);
+
+
+
+                    builder.setView(ll);
+
+                    // Set up the buttons
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            String ext = excra.getText().toString();
+
+
+                            PInfoDbHandler db = new PInfoDbHandler(root.getContext(),"",null,1);
+                            CurrInfo c=new CurrInfo(item_id,extracurr_id,ext);
+                            db.updateCInfo(c);
+                            Intent i = new Intent(root.getContext(), FormExcr.class);
+                            root.getContext().startActivity(i);
+                            ((Activity)root.getContext()).finish();
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+                    builder.show();
+
+                }
+            });
 
         }
 

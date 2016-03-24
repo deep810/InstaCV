@@ -21,6 +21,11 @@ public class CurrInfo {
 //        this._currid = currid;
         this._name = name;
     }
+    public CurrInfo(int id,int currid, String name) {
+        this._id = id;
+        this._currid = currid;
+        this._name = name;
+    }
 
     public int get_id() {
         return _id;

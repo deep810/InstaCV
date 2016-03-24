@@ -81,6 +81,7 @@ public class FormExcr extends AppCompatActivity {
                         db.addCInfo(c);
                         Intent i = new Intent(FormExcr.this,FormExcr.class);
                         startActivity(i);
+                        finish();
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

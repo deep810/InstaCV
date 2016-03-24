@@ -1,5 +1,6 @@
 package adapter;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -141,6 +142,7 @@ public class EduRecyclerViewAdapter extends RecyclerView.Adapter<EduRecyclerView
                             db.updateEInfo(e);
                             Intent i = new Intent(root.getContext(), FormEdu.class);
                             root.getContext().startActivity(i);
+                            ((Activity)root.getContext()).finish();
                         }
                     });
                     builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

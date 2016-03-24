@@ -21,6 +21,13 @@ public class SkillsInfo {
         this._nameofskill = nameofskill;
     }
 
+    public SkillsInfo(int id,int skillid, String prof, String nameofskill) {
+        this._id = id;
+        this._skillid = skillid;
+        this._prof = prof;
+        this._nameofskill = nameofskill;
+    }
+
     public int get_id() {
         return _id;
     }

@@ -99,6 +99,7 @@ public class FormPro extends AppCompatActivity {
                         db.addPRInfo(p);
                         Intent i = new Intent(FormPro.this,FormPro.class);
                         startActivity(i);
+                        finish();
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

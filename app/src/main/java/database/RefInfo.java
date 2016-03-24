@@ -26,6 +26,15 @@ public class RefInfo {
         this._org=org;
     }
 
+    public RefInfo(int id,int refid,String rname, String pos, String contact,String org) {
+        this._id = id;
+        this._refid = refid;
+        this._rname = rname;
+        this._pos = pos;
+        this._contact = contact;
+        this._org=org;
+    }
+
     public int get_id() {
         return _id;
     }

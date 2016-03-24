@@ -523,6 +523,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put("item_id",pr.get_id());
         values.put("proid", pr.get_proid());
         values.put("title", pr.get_title());
         values.put("location", pr.get_location());
@@ -533,7 +534,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
 
         // updating row
         return db.update(TABLE_PRINFO, values,  "proid = ?",
-                new String[] { String.valueOf(pr.get_id()) });
+                new String[] { String.valueOf(pr.get_proid()) });
     }
 
     // Deleting single info
@@ -740,6 +741,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put("item_id",r.get_id());
         values.put("refid", r.get_refid());
         values.put("rname", r.get_rname());
         values.put("pos", r.get_pos());
@@ -747,17 +749,16 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         values.put("org", r.get_org());
 
 
-
         // updating row
         return db.update(TABLE_RINFO, values,  "refid = ?",
-                new String[] { String.valueOf(r.get_id()) });
+                new String[] { String.valueOf(r.get_refid()) });
     }
 
     // Deleting single info
     public void deleteRInfo(RefInfo r) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_RINFO, " refid= ?",
-                new String[]{String.valueOf(r.get_id())});
+                new String[]{String.valueOf(r.get_refid())});
         db.close();
     }
 
