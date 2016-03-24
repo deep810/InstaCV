@@ -33,11 +33,14 @@ public class FormExcr extends AppCompatActivity {
     private RecyclerView.Adapter excrAdapter;
     private RecyclerView.LayoutManager excrLayoutManager;
     private List<CurrInfo> mItems;
+    private int item_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_excr);
+
+        item_id=getIntent().getIntExtra("item_id",0);
 
         excrRecyclerView=(RecyclerView)findViewById(R.id.excrRecyclerView);
         excrRecyclerView.setHasFixedSize(true);
@@ -127,9 +130,10 @@ public class FormExcr extends AppCompatActivity {
 
 
                         PInfoDbHandler db = new PInfoDbHandler(FormExcr.this,"",null,1);
-                        CurrInfo c=new CurrInfo(1,ext);
+                        CurrInfo c=new CurrInfo(item_id,ext);
                         db.addCInfo(c);
                         Intent i = new Intent(FormExcr.this,FormExcr.class);
+                        i.putExtra("item_id",item_id);
                         startActivity(i);
                         finish();
                     }
@@ -163,12 +167,13 @@ public class FormExcr extends AppCompatActivity {
 
     private List<CurrInfo> getDataSet() {
         PInfoDbHandler db = new PInfoDbHandler(this,"",null,1);
-        List<CurrInfo> i = db.getAllCInfo();
+        List<CurrInfo> i = db.getAllCInfoById(item_id);
         return i;
     }
 
     public void submitForm(View view) {
         Intent intent = new Intent(this,FormRef.class);
+        intent.putExtra("item_id",item_id);
         startActivity(intent);
 
     }

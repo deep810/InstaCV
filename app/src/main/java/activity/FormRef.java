@@ -36,12 +36,15 @@ public class FormRef extends AppCompatActivity {
     private RecyclerView.Adapter refAdapter;
     private RecyclerView.LayoutManager refLayoutManager;
     private List<RefInfo> mItems;
+    private int item_id;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_ref);
+
+        item_id=getIntent().getIntExtra("item_id",0);
 
         refRecyclerView=(RecyclerView)findViewById(R.id.refRecyclerView);
         refRecyclerView.setHasFixedSize(true);
@@ -142,9 +145,10 @@ public class FormRef extends AppCompatActivity {
 
 
                         PInfoDbHandler db = new PInfoDbHandler(FormRef.this,"",null,1);
-                        RefInfo e=new RefInfo(1, name, contact, position, org);
+                        RefInfo e=new RefInfo(item_id, name, contact, position, org);
                         db.addRInfo(e);
                         Intent i = new Intent(FormRef.this,FormRef.class);
+                        i.putExtra("item_id",item_id);
                         startActivity(i);
                         finish();
                     }
@@ -178,7 +182,7 @@ public class FormRef extends AppCompatActivity {
 
     private List<RefInfo> getDataSet() {
         PInfoDbHandler db = new PInfoDbHandler(this,"",null,1);
-        List<RefInfo> i = db.getAllRInfo();
+        List<RefInfo> i = db.getAllRInfoById(item_id);
         for (RefInfo item : i) {
           //  String log = "Degree: " + item.get_degree() + " ,CGPA: " + item.get_cgpa() ;
             // Writing Contacts to log
@@ -191,6 +195,7 @@ public class FormRef extends AppCompatActivity {
     public void submitForm(View view) {
 
         Intent intent = new Intent(FormRef.this,FormRef.class);
+        intent.putExtra("item_id",item_id);
         startActivity(intent);
 
 

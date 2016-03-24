@@ -205,8 +205,8 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         values.put("objective", p.get_objective());
 
         // updating row
-        return db.update(TABLE_PINFO, values,  "id = ?",
-                new String[] { String.valueOf(p.get_id()) });
+        return db.update(TABLE_PINFO, values, "id = ?",
+                new String[]{String.valueOf(p.get_id())});
     }
 
     // Deleting single info
@@ -265,6 +265,32 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
                        , cursor.getString(4));
         // return contact
         return e;
+    }
+
+    // get all Einfo of same item_id
+    public List<EduInfo> getAllEInfoByID(int i_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        List<EduInfo> List = new ArrayList<EduInfo>();
+        Cursor cursor = db.query(TABLE_EINFO, new String[] { "item_id","edu_id","degree","yop"
+                        ,"cgpa", "institute" }, "item_id" + "=?",
+                new String[] { String.valueOf(i_id) }, null, null, null, null);
+        if (cursor.moveToFirst()){
+            do{
+                EduInfo e = new EduInfo();
+                e.set_id(Integer.parseInt(cursor.getString(0)));
+                e.set_eduid(Integer.parseInt(cursor.getString(1)));
+                e.set_degree(cursor.getString(2));
+                e.set_yop(cursor.getString(3));
+                e.set_cgpa(cursor.getString(4));
+                e.set_institute(cursor.getString(5));
+
+
+                List.add(e);
+            }while(cursor.moveToNext());
+        }
+            //cursor.moveToFirst();
+        return List;
     }
 
     //get all entries
@@ -372,6 +398,37 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         // return contact
         return s;
     }
+
+    //get all skill of same item_id
+    public List<SkillsInfo> getAllSInfoById(int i_id) {
+        List<SkillsInfo> List = new ArrayList<SkillsInfo>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_SINFO +" WHERE item_id = "+i_id;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+//        Log.i("cursor",cursor.toString());
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                SkillsInfo s = new SkillsInfo();
+                s.set_id(Integer.parseInt(cursor.getString(0)));
+                s.set_skillid(Integer.parseInt(cursor.getString(1)));
+                s.set_nameofskill(cursor.getString(2));
+                s.set_prof(cursor.getString(3));
+
+
+
+                List.add(s);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return List;
+    }
+
 
     //get all entries
     public List<SkillsInfo> getAllSInfo() {
@@ -481,6 +538,37 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
                  cursor.getString(1),cursor.getString(2), cursor.getString(3),cursor.getString(4), cursor.getString(5));
         // return contact
         return pr;
+    }
+
+
+    public List<ProjectInfo> getAllPRInfoById(int i_id) {
+        List<ProjectInfo> List = new ArrayList<ProjectInfo>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_PRINFO + " WHERE item_id = "+i_id;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+//        Log.i("cursor",cursor.toString());
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                ProjectInfo pr = new ProjectInfo();
+                pr.set_id(Integer.parseInt(cursor.getString(0)));
+                pr.set_proid(Integer.parseInt(cursor.getString(1)));
+                pr.set_title(cursor.getString(2));
+                pr.set_location(cursor.getString(3));
+                pr.set_time(cursor.getString(4));
+                pr.set_desig(cursor.getString(5));
+                pr.set_desc(cursor.getString(6));
+
+                List.add(pr);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return List;
     }
 
     //get all entries
@@ -595,6 +683,34 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         return pr;
     }
 
+   //get Extra-curr info by item_id
+    public List<CurrInfo> getAllCInfoById(int i_id) {
+        List<CurrInfo> List = new ArrayList<CurrInfo>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_CINFO + " WHERE item_id = " + i_id;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+//        Log.i("cursor",cursor.toString());
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                CurrInfo c = new CurrInfo();
+                c.set_id(Integer.parseInt(cursor.getString(0)));
+                c.set_currid(Integer.parseInt(cursor.getString(1)));
+                c.set_name(cursor.getString(2));
+
+                List.add(c);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return List;
+    }
+
+
     //get all entries
     public List<CurrInfo> getAllCInfo() {
         List<CurrInfo> List = new ArrayList<CurrInfo>();
@@ -699,6 +815,37 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         // return contact
         return r;
     }
+    //get all reference by item_id
+    public List<RefInfo> getAllRInfoById(int i_id) {
+        List<RefInfo> List = new ArrayList<RefInfo>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_RINFO + " WHERE item_id = "+i_id;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+//        Log.i("cursor",cursor.toString());
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                RefInfo r = new RefInfo();
+                r.set_id(Integer.parseInt(cursor.getString(0)));
+                r.set_refid(Integer.parseInt(cursor.getString(1)));
+                r.set_rname(cursor.getString(2));
+                r.set_pos(cursor.getString(3));
+                r.set_contact(cursor.getString(4));
+                r.set_org(cursor.getString(5));
+
+                
+
+                List.add(r);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return List;
+    }
 
     //get all entries
     public List<RefInfo> getAllRInfo() {
@@ -782,7 +929,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
     * */
 
     //Add values to the table
-    public long addStatus(ItemStatus r) {
+    public int addStatus(ItemStatus r) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -800,7 +947,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
 
 
         // Inserting Row
-        long id = db.insert(TABLE_STATUS, null, values);
+        int id =(int) db.insert(TABLE_STATUS, null, values);
         db.close(); // Closing database connection
         return id;
     }

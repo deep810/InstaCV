@@ -34,12 +34,15 @@ public class FormEdu extends AppCompatActivity {
     private RecyclerView.Adapter eduAdapter;
     private RecyclerView.LayoutManager eduLayoutManager;
     private List<EduInfo> mItems;
+    private int item_id;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_edu);
+
+        item_id=getIntent().getIntExtra("item_id",0);
 
         eduRecyclerView=(RecyclerView)findViewById(R.id.eduRecyclerView);
         eduRecyclerView.setHasFixedSize(true);
@@ -140,9 +143,10 @@ public class FormEdu extends AppCompatActivity {
 
 
                         PInfoDbHandler db = new PInfoDbHandler(FormEdu.this,"",null,1);
-                        EduInfo e=new EduInfo(1, edu, year, cg, ins);
+                        EduInfo e=new EduInfo(item_id, edu, year, cg, ins);
                         db.addEInfo(e);
                         Intent i = new Intent(FormEdu.this,FormEdu.class);
+                        i.putExtra("item_id",item_id);
                         startActivity(i);
                         finish();
                     }
@@ -177,7 +181,7 @@ public class FormEdu extends AppCompatActivity {
 
     private List<EduInfo> getDataSet() {
         PInfoDbHandler db = new PInfoDbHandler(this,"",null,1);
-        List<EduInfo> i = db.getAllEInfo();
+        List<EduInfo> i = db.getAllEInfoByID(item_id);
         for (EduInfo item : i) {
             String log = "Degree: " + item.get_degree() + " ,CGPA: " + item.get_cgpa() ;
             // Writing Contacts to log
@@ -190,8 +194,8 @@ public class FormEdu extends AppCompatActivity {
     public void submitForm(View view) {
 
         Intent intent = new Intent(FormEdu.this,FormPro.class);
+        intent.putExtra("item_id",item_id);
         startActivity(intent);
-
 
     }
 }
