@@ -36,25 +36,25 @@
                 android:layout_marginTop="10dp"
                 android:layout_below="@+id/home_card_1"/>
 
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="E"
-                android:id="@+id/heb"
-                android:layout_alignTop="@+id/hdb"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+            <!--<Button-->
+                <!--style="?android:attr/buttonStyleSmall"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="E"-->
+                <!--android:id="@+id/heb"-->
+                <!--android:layout_alignTop="@+id/hdb"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_alignParentEnd="true" />-->
 
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="D"
-                android:id="@+id/hdb"
-                android:layout_below="@+id/home_card_1"
-                android:layout_toLeftOf="@+id/heb"
-                android:layout_toStartOf="@+id/heb" />
+            <!--<Button-->
+                <!--style="?android:attr/buttonStyleSmall"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="D"-->
+                <!--android:id="@+id/hdb"-->
+                <!--android:layout_below="@+id/home_card_1"-->
+                <!--android:layout_toLeftOf="@+id/heb"-->
+                <!--android:layout_toStartOf="@+id/heb" />-->
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 

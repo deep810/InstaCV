@@ -64,7 +64,7 @@ public class ProRecyclerViewAdapter extends RecyclerView.Adapter<ProRecyclerView
     public static class DataObjectHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView t1, t2, t3, t4,t5;
-        Button b1, b2;
+//        Button b1, b2;
         int pro_id,item_id;
 
         public DataObjectHolder(View itemView) {
@@ -74,12 +74,12 @@ public class ProRecyclerViewAdapter extends RecyclerView.Adapter<ProRecyclerView
             t3 = (TextView) itemView.findViewById(R.id.pro_card_3);
             t4 = (TextView) itemView.findViewById(R.id.pro_card_4);
             t5 = (TextView) itemView.findViewById(R.id.pro_card_5);
-            b1 = (Button) itemView.findViewById(R.id.preb);
-            b2 = (Button) itemView.findViewById(R.id.prdb);
+//            b1 = (Button) itemView.findViewById(R.id.preb);
+//            b2 = (Button) itemView.findViewById(R.id.prdb);
 
             itemView.setOnClickListener(this);
-            b1.setOnClickListener(this);
-            b2.setOnClickListener(this);
+//            b1.setOnClickListener(this);
+//            b2.setOnClickListener(this);
 
             final View root = itemView;
             root.setOnClickListener(new View.OnClickListener() {
@@ -158,11 +158,11 @@ public class ProRecyclerViewAdapter extends RecyclerView.Adapter<ProRecyclerView
 
         @Override
         public void onClick(View v) {
-            if (v.getId() == b1.getId()){
-                Toast.makeText(v.getContext(), "Edit: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
-            } else if(v.getId() == b2.getId()){
-                Toast.makeText(v.getContext(), "Delete: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
-            }
+//            if (v.getId() == b1.getId()){
+//                Toast.makeText(v.getContext(), "Edit: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+//            } else if(v.getId() == b2.getId()){
+//                Toast.makeText(v.getContext(), "Delete: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+//            }
             Log.i("test", String.valueOf(proClickListener));
             proClickListener.onItemClick(getAdapterPosition(), v);
         }
