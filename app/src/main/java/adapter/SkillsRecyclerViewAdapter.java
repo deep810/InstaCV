@@ -137,6 +137,7 @@ public class SkillsRecyclerViewAdapter extends RecyclerView.Adapter<SkillsRecycl
                             SkillsInfo e=new SkillsInfo(item_id,skill_id, prof, skill);
                             db.updateSInfo(e);
                             Intent i = new Intent(root.getContext(), FormSkill.class);
+                            i.putExtra("item_id",item_id);
                             root.getContext().startActivity(i);
                             ((Activity)root.getContext()).finish();
                         }

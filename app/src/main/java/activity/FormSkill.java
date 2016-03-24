@@ -37,6 +37,7 @@ public class FormSkill extends AppCompatActivity {
     private RecyclerView.Adapter skillAdapter;
     private RecyclerView.LayoutManager skillLayoutManager;
     private List<SkillsInfo> mItems;
+    private int item_id;
 
 
 
@@ -44,6 +45,8 @@ public class FormSkill extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_skill);
+
+        item_id=getIntent().getIntExtra("item_id",0);
 
         skillRecyclerView=(RecyclerView)findViewById(R.id.skillRecyclerView);
         skillRecyclerView.setHasFixedSize(true);
@@ -143,9 +146,10 @@ public class FormSkill extends AppCompatActivity {
 
 
                         PInfoDbHandler db = new PInfoDbHandler(FormSkill.this,"",null,1);
-                        SkillsInfo e=new SkillsInfo(1, prof, skill);
+                        SkillsInfo e=new SkillsInfo(item_id, prof, skill);
                         db.addSInfo(e);
                         Intent i = new Intent(FormSkill.this,FormSkill.class);
+                        i.putExtra("item_id",item_id);
                         startActivity(i);
                         finish();
                     }
@@ -179,7 +183,7 @@ public class FormSkill extends AppCompatActivity {
 
     private List<SkillsInfo> getDataSet() {
         PInfoDbHandler db = new PInfoDbHandler(this,"",null,1);
-        List<SkillsInfo> i = db.getAllSInfo();
+        List<SkillsInfo> i = db.getAllSInfoById(item_id);
         for (SkillsInfo item : i) {
           //  String log = "Degree: " + item.get_degree() + " ,CGPA: " + item.get_cgpa() ;
             // Writing Contacts to log
@@ -191,6 +195,7 @@ public class FormSkill extends AppCompatActivity {
 
     public void submitForm(View view) {
         Intent intent = new Intent(this,FormExcr.class);
+        intent.putExtra("item_id",item_id);
         startActivity(intent);
 
     }

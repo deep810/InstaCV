@@ -34,11 +34,14 @@ public class FormPro extends AppCompatActivity {
     private RecyclerView.Adapter proAdapter;
     private RecyclerView.LayoutManager proLayoutManager;
     private List<ProjectInfo> mItems;
+    int item_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_projects);
+
+        item_id=getIntent().getIntExtra("item_id",0);
 
         proRecyclerView=(RecyclerView)findViewById(R.id.proRecyclerView);
         proRecyclerView.setHasFixedSize(true);
@@ -143,9 +146,10 @@ public class FormPro extends AppCompatActivity {
 
 
                         PInfoDbHandler db = new PInfoDbHandler(FormPro.this,"",null,1);
-                        ProjectInfo p=new ProjectInfo(1,title,location,duration,designation,description);
+                        ProjectInfo p=new ProjectInfo(item_id,title,location,duration,designation,description);
                         db.addPRInfo(p);
                         Intent i = new Intent(FormPro.this,FormPro.class);
+                        i.putExtra("item_id",item_id);
                         startActivity(i);
                         finish();
                     }
@@ -166,7 +170,7 @@ public class FormPro extends AppCompatActivity {
 
     private List<ProjectInfo> getDataSet() {
         PInfoDbHandler db = new PInfoDbHandler(this,"",null,1);
-        List<ProjectInfo> pr = db.getAllPRInfo();
+        List<ProjectInfo> pr = db.getAllPRInfoById(item_id);
         for (ProjectInfo item : pr) {
             String log = "Title: " + item.get_title() + " ,Designation: " + item.get_desig() ;
             // Writing Contacts to log
@@ -191,6 +195,7 @@ public class FormPro extends AppCompatActivity {
 
     public void submitForm(View view) {
         Intent intent = new Intent(this,FormSkill.class);
+        intent.putExtra("item_id",item_id);
         startActivity(intent);
     }
 }

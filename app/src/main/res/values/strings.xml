@@ -61,6 +61,7 @@
     <string name="err_msg_password">Enter the password</string>
     <string name="hint_address">Address</string>
     <string name="hint_contact">Contact No.</string>
+    <string name="hint_objective">Objective</string>
     <string name="btn_date">Pick Your Date Of Birth</string>
 
 

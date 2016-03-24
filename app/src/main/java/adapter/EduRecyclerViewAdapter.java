@@ -141,6 +141,7 @@ public class EduRecyclerViewAdapter extends RecyclerView.Adapter<EduRecyclerView
                             EduInfo e=new EduInfo(item_id,edu_id, edu, year, cg, ins);
                             db.updateEInfo(e);
                             Intent i = new Intent(root.getContext(), FormEdu.class);
+                            i.putExtra("item_id",item_id);
                             root.getContext().startActivity(i);
                             ((Activity)root.getContext()).finish();
                         }

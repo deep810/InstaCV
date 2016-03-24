@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -37,11 +38,13 @@ import helper.PInfoDbHandler;
  */
 public class FormPersonal extends AppCompatActivity {
     private Toolbar toolbar;
-    private EditText inputpName, inputaddress, inputdob, inputcontact, inputemail;
+    private EditText inputpName, inputaddress, inputdob, inputcontact, inputemail,inputobjective;
     private TextInputLayout inputLayoutpName, inputLayoutaddress, inputLayoutdob, inputLayoutcontact, inputLayoutemail;
     private Button btnsave,dp;  //Date picker
     int year_x,month_x,day_x;
     static final int DIALOG_ID=0;
+
+    String title;
 
 
 
@@ -52,7 +55,7 @@ public class FormPersonal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_personal);
 
-
+        title=getIntent().getStringExtra("Title");
 
         final Calendar cal=Calendar.getInstance();
         year_x=cal.get(Calendar.YEAR);
@@ -76,6 +79,8 @@ public class FormPersonal extends AppCompatActivity {
         inputdob = (EditText) findViewById(R.id.input_dob);
         inputcontact = (EditText) findViewById(R.id.input_contact);
         inputemail = (EditText) findViewById(R.id.input_email);
+        inputobjective = (EditText) findViewById(R.id.input_objective);
+
         btnsave = (Button) findViewById(R.id.btn_save);
 
 
@@ -183,62 +188,25 @@ public class FormPersonal extends AppCompatActivity {
     private void submitForm() {
         PInfoDbHandler db = new PInfoDbHandler(this,"",null,1);
 
-// db.addPInfo(new PersonalInfo(inputpName.getEditText().toString(),inputLayoutaddress.getEditText().toString()
-//        ,inputLayoutdob.getEditText().toString(),inputLayoutpName.getEditText().toString(),inputLayoutpName.getEditText().toString()));
-//        db.addPInfo(new PersonalInfo(1, "abc", "asdad", "23/12/2314", "fwefwef", "fefwfew", "abc"));
-     //   db.addPInfo(new PersonalInfo(2,"abcde","asdfd","23/1/2314","asddad","few","abc"));
-        //db.addEInfo(new EduInfo(1, 5, "edu1", "abc", "xyz", "dwqd"));
-//        db.deletePInfo(db.getPInfo(1));
-       // db.deleteEInfo(db.getEInfo(1));
-//        db.addStatus(new ItemStatus(504,"title4",0,0,0,0,0,0));
-//        db.addStatus(new ItemStatus(505,"title5",0,0,0,0,0,0));
-//        db.addStatus(new ItemStatus(506,"title6",0,0,0,0,0,0));
-
-//        ProjectInfo i = new ProjectInfo(1,5,"project1","surat","3/2/15","cvxvsd","student");
-//
-//        db.addPRInfo(i);
-//
-//        ProjectInfo a = db.getPRInfo(2);
-//        String log ="Id: "+a.get_id()+"  ,proid: "+a.get_proid()+" ,title: "+a.get_title()+" ,location: "+
-//                    a.get_location()+" ,time: "+a.get_time()+" ,desig: "+a.get_desig()+" ,desc: "+a.get_desc();
-//        Log.d("Project Table: ", log);
-//        List<ProjectInfo> b = db.getAllPRInfo();
-//        for(ProjectInfo x : b){
-//            log ="Id: "+x.get_id()+"  ,proid: "+x.get_proid()+" ,title: "+x.get_title()+" ,location: "+
-//                    x.get_location()+" ,time: "+x.get_time()+" ,desig: "+x.get_desig()+" ,desc: "+x.get_desc();
-//            Log.d("Status Table: ",log);
-//        }
-
-       /* db.updateStatus(new ItemStatus(1, "Jhon", 0, 0, 0, 0, 0, 0));
-
-       ItemStatus a = db.getStatus(1);
-        String log ="Id: "+a.get_item_id()+" ,Title: "+a.getTitle() + " ,personal_status: "+a.get_personalstatus()+" ,edustatus: "+a.get_edustatus()+" ,_prostatus: " +a.get_prostatus()+
-                " ,skillstatus: "+a.get_skillstatus()+" ,refstatus: "+a.get_refstatus()+" ,excurstatus: "+a.get_excurstatus();
-        Log.d("Status Table: ",log);*/
-//        db.deletePRInfo(i);
+        ItemStatus i_status=new ItemStatus(title,1,0,0,0,0,0);
+        int id = db.addStatus(i_status);
+        Log.d("Insted Item_status: ",String.valueOf(id));
 
 
+        String fname = inputpName.getText().toString();
+        String add = inputpName.getText().toString();
+        String dob = inputdob.getText().toString();
+        String cont = inputcontact.getText().toString();
+        String email = inputemail.getText().toString();
+        String objective = inputobjective.getText().toString();
 
-//      Queries for testing
-        /*Log.d("Insert", "Inserting..,");
-
-        List<PersonalInfo> p = db.getAllPInfo();
-        for (PersonalInfo pi : p) {
-            String log = "Id: " + pi.get_id() + " ,Name: " + pi.get_fullname() + " ,Contact: " + pi.get_contact();
-            // Writing Contacts to log
-            Log.d("Name: ", log);
-        }
-
-        List<EduInfo> e=db.getAllEInfo();
-        for (EduInfo pi : e) {
-            String log = "Id: " + pi.get_id() + " ,Name: " + pi.get_degree() + " ,Contact: " + pi.get_cgpa();
-            // Writing Contacts to log
-            Log.d("Edu: ", log);
-        }*/
-
+        PersonalInfo p = new PersonalInfo(id,fname,add,dob,cont,email,objective);
+        db.addPInfo(p);
 
         Intent i = new Intent(this,FormEdu.class);
+        i.putExtra("item_id",id);
         startActivity(i);
+
     }
 
 

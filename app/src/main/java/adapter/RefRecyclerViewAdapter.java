@@ -142,6 +142,7 @@ public class RefRecyclerViewAdapter extends RecyclerView.Adapter<RefRecyclerView
                             RefInfo e=new RefInfo(item_id,ref_id, name, contact, position, org);
                             db.updateRInfo(e);
                             Intent i = new Intent(root.getContext(), FormRef.class);
+                            i.putExtra("item_id",item_id);
                             root.getContext().startActivity(i);
                             ((Activity)root.getContext()).finish();
                         }

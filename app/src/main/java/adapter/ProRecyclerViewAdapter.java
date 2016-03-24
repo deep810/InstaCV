@@ -138,6 +138,7 @@ public class ProRecyclerViewAdapter extends RecyclerView.Adapter<ProRecyclerView
                             ProjectInfo p=new ProjectInfo(item_id,pro_id,title,location,duration,designation,description);
                             db.updatePRInfo(p);
                             Intent i = new Intent(root.getContext(), FormPro.class);
+                            i.putExtra("item_id",item_id);
                             root.getContext().startActivity(i);
                             ((Activity)root.getContext()).finish();
 

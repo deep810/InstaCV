@@ -151,10 +151,10 @@ public class HomeFragment extends Fragment {
 
                         String m_text = input.getText().toString();
                         PInfoDbHandler db = new PInfoDbHandler(getActivity(),"",null,1);
-                        ItemStatus s = new ItemStatus(m_text,0,0,0,0,0,0);
+                        //ItemStatus s = new ItemStatus(m_text,0,0,0,0,0,0);
 //                        db.addStatus(s);
                         Intent i = new Intent(getActivity(),FormPersonal.class);
-
+                        i.putExtra("Title",m_text);
                        startActivity(i);
                     }
                 });

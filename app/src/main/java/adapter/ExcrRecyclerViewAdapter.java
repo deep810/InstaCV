@@ -115,6 +115,7 @@ public class ExcrRecyclerViewAdapter extends RecyclerView.Adapter<ExcrRecyclerVi
                             CurrInfo c=new CurrInfo(item_id,extracurr_id,ext);
                             db.updateCInfo(c);
                             Intent i = new Intent(root.getContext(), FormExcr.class);
+                            i.putExtra("item_id",item_id);
                             root.getContext().startActivity(i);
                             ((Activity)root.getContext()).finish();
                         }
