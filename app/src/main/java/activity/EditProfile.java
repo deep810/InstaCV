@@ -2,6 +2,7 @@ package activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 
 import com.example.vishwashrisairm.materialdesign.R;
 
@@ -16,5 +17,6 @@ public class EditProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        //RecyclerView r1 = (RecyclerView)findViewById(R.id.)
     }
 }
