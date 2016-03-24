@@ -109,6 +109,38 @@
         </activity>
         <!-- Form Skills Activity ends-->
 
+        <!--Form Extracurricular Activity -->
+
+        <activity
+            android:name="activity.FormExcr"
+
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- Form ExtraCurricular Activity ends-->
+
+
+
+        <!--Form Reference Activity -->
+
+        <activity
+            android:name="activity.FormRef"
+
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- Form Reference Activity ends-->
+
 
         <service android:name="activity.KinveyAuthenticationService" >
             <intent-filter>

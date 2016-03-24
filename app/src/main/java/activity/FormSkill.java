@@ -97,7 +97,7 @@ public class FormSkill extends AppCompatActivity {
                         PInfoDbHandler db = new PInfoDbHandler(FormSkill.this,"",null,1);
                         SkillsInfo e=new SkillsInfo(1, prof, skill);
                         db.addSInfo(e);
-                        Intent i = new Intent(FormSkill.this,FormEdu.class);
+                        Intent i = new Intent(FormSkill.this,FormSkill.class);
                         startActivity(i);
                     }
                 });
@@ -141,7 +141,8 @@ public class FormSkill extends AppCompatActivity {
     }
 
     public void submitForm(View view) {
-        Log.i("submit","form");
+        Intent intent = new Intent(this,FormExcr.class);
+        startActivity(intent);
 
     }
 }

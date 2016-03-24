@@ -589,8 +589,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
-        CurrInfo pr = new CurrInfo(Integer.parseInt(cursor.getString(0)),
-                Integer.parseInt(cursor.getString(1)), cursor.getString(2));
+        CurrInfo pr = new CurrInfo(Integer.parseInt(cursor.getString(0)), cursor.getString(1));
         // return contact
         return pr;
     }
@@ -669,7 +668,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("refid", r.get_refid());
+        values.put("item_id", r.get_id());
         values.put("rname", r.get_rname());
         values.put("pos", r.get_pos());
         values.put("contact", r.get_contact());
@@ -695,7 +694,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
             cursor.moveToFirst();
 
         RefInfo r = new RefInfo(Integer.parseInt(cursor.getString(0)),
-                Integer.parseInt(cursor.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
+                 cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
         // return contact
         return r;
     }
