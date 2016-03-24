@@ -36,6 +36,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
         int item_id;
 
 //        Button b1,b2;
+
         int x;
 
         public DataObjectHolder(View itemView) {
