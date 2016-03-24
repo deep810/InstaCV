@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.example.vishwashrisairm.materialdesign.R;
+import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListener;
 
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class FormPro extends AppCompatActivity {
     private RecyclerView proRecyclerView;
     private RecyclerView.Adapter proAdapter;
     private RecyclerView.LayoutManager proLayoutManager;
+    private List<ProjectInfo> mItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +44,54 @@ public class FormPro extends AppCompatActivity {
         proRecyclerView.setHasFixedSize(true);
         proLayoutManager=new LinearLayoutManager(this);
         proRecyclerView.setLayoutManager(proLayoutManager);
-        proAdapter=new ProRecyclerViewAdapter(getDataSet());
+        mItems=getDataSet();
+        proAdapter=new ProRecyclerViewAdapter(mItems);
         proRecyclerView.setAdapter(proAdapter);
+
+        //        Swipe Touch Listener
+        SwipeableRecyclerViewTouchListener swipeTouchListener =
+                new SwipeableRecyclerViewTouchListener(proRecyclerView,
+                        new SwipeableRecyclerViewTouchListener.SwipeListener() {
+                            @Override
+                            public boolean canSwipeLeft(int position) {
+                                return true;
+                            }
+
+                            @Override
+                            public boolean canSwipeRight(int position) {
+                                return true;
+                            }
+
+                            @Override
+                            public void onDismissedBySwipeLeft(RecyclerView recyclerView, int[] reverseSortedPositions) {
+                                for (int position : reverseSortedPositions) {
+//                                    Toast.makeText(MainActivity.this, mItems.get(position) + " swiped left", Toast.LENGTH_SHORT).show();
+
+                                    ProjectInfo eduid=mItems.get(position);
+                                    mItems.remove(position);
+                                    PInfoDbHandler db = new PInfoDbHandler(recyclerView.getContext(),"",null,1);
+                                    db.deletePRInfo(eduid);
+                                    proAdapter.notifyItemRemoved(position);
+                                }
+                                proAdapter.notifyDataSetChanged();
+                            }
+
+                            @Override
+                            public void onDismissedBySwipeRight(RecyclerView recyclerView, int[] reverseSortedPositions) {
+                                for (int position : reverseSortedPositions) {
+//                                    Toast.makeText(MainActivity.this, mItems.get(position) + " swiped right", Toast.LENGTH_SHORT).show();
+                                    ProjectInfo eduid=mItems.get(position);
+                                    mItems.remove(position);
+                                    PInfoDbHandler db = new PInfoDbHandler(recyclerView.getContext(),"",null,1);
+                                    db.deletePRInfo(eduid);
+
+                                    proAdapter.notifyItemRemoved(position);
+                                }
+                                proAdapter.notifyDataSetChanged();
+                            }
+                        });
+
+        proRecyclerView.addOnItemTouchListener(swipeTouchListener);
 
         FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab_pro);
         fab.setOnClickListener(new View.OnClickListener() {

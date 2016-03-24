@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.example.vishwashrisairm.materialdesign.R;
+import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListener;
 
 import java.text.Normalizer;
 import java.util.List;
@@ -24,6 +25,7 @@ import adapter.HomeRecyclerViewAdapter;
 import adapter.SkillsRecyclerViewAdapter;
 import database.EduInfo;
 import database.ItemStatus;
+import database.RefInfo;
 import database.SkillsInfo;
 import helper.PInfoDbHandler;
 
@@ -34,6 +36,7 @@ public class FormSkill extends AppCompatActivity {
     private RecyclerView skillRecyclerView;
     private RecyclerView.Adapter skillAdapter;
     private RecyclerView.LayoutManager skillLayoutManager;
+    private List<SkillsInfo> mItems;
 
 
 
@@ -46,8 +49,53 @@ public class FormSkill extends AppCompatActivity {
         skillRecyclerView.setHasFixedSize(true);
         skillLayoutManager=new LinearLayoutManager(this);
         skillRecyclerView.setLayoutManager(skillLayoutManager);
-        skillAdapter=new SkillsRecyclerViewAdapter(getDataSet());
+        mItems=getDataSet();
+        skillAdapter=new SkillsRecyclerViewAdapter(mItems);
         skillRecyclerView.setAdapter(skillAdapter);
+
+        //        Swipe Touch Listener
+        SwipeableRecyclerViewTouchListener swipeTouchListener =
+                new SwipeableRecyclerViewTouchListener(skillRecyclerView,
+                        new SwipeableRecyclerViewTouchListener.SwipeListener() {
+                            @Override
+                            public boolean canSwipeLeft(int position) {
+                                return true;
+                            }
+
+                            @Override
+                            public boolean canSwipeRight(int position) {
+                                return true;
+                            }
+
+                            @Override
+                            public void onDismissedBySwipeLeft(RecyclerView recyclerView, int[] reverseSortedPositions) {
+                                for (int position : reverseSortedPositions) {
+//                                    Toast.makeText(MainActivity.this, mItems.get(position) + " swiped left", Toast.LENGTH_SHORT).show();
+
+                                    SkillsInfo eduid=mItems.get(position);
+                                    PInfoDbHandler db = new PInfoDbHandler(recyclerView.getContext(),"",null,1);
+                                    db.deleteSInfo(eduid);
+                                    mItems.remove(position);
+                                    skillAdapter.notifyItemRemoved(position);
+                                }
+                                skillAdapter.notifyDataSetChanged();
+                            }
+
+                            @Override
+                            public void onDismissedBySwipeRight(RecyclerView recyclerView, int[] reverseSortedPositions) {
+                                for (int position : reverseSortedPositions) {
+//                                    Toast.makeText(MainActivity.this, mItems.get(position) + " swiped right", Toast.LENGTH_SHORT).show();
+                                    SkillsInfo eduid=mItems.get(position);
+                                    PInfoDbHandler db = new PInfoDbHandler(recyclerView.getContext(),"",null,1);
+                                    mItems.remove(position);
+                                    db.deleteSInfo(eduid);
+                                    skillAdapter.notifyItemRemoved(position);
+                                }
+                                skillAdapter.notifyDataSetChanged();
+                            }
+                        });
+
+        skillRecyclerView.addOnItemTouchListener(swipeTouchListener);
 
 //        Floating action button
         FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab_skill);

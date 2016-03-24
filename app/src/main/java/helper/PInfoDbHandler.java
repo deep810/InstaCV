@@ -639,7 +639,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
     public void deleteCInfo(CurrInfo c) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_CINFO, " currid= ?",
-                new String[]{String.valueOf(c.get_id())});
+                new String[]{String.valueOf(c.get_currid())});
         db.close();
     }
 
@@ -757,7 +757,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
     public void deleteRInfo(RefInfo r) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_RINFO, " refid= ?",
-                new String[]{String.valueOf(r.get_id())});
+                new String[]{String.valueOf(r.get_refid())});
         db.close();
     }
 

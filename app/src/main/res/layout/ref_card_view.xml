@@ -19,7 +19,8 @@
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+            android:background="?android:selectableItemBackground">
 
             <TextView
                 android:id="@+id/ref_card_1"
