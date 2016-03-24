@@ -1,11 +1,18 @@
 package adapter;
 
+import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,7 +20,9 @@ import com.example.vishwashrisairm.materialdesign.R;
 
 import java.util.List;
 
+import activity.FormPro;
 import database.ProjectInfo;
+import helper.PInfoDbHandler;
 
 /**
  * Created by vishwashrisairm on 23/3/16.
@@ -43,6 +52,8 @@ public class ProRecyclerViewAdapter extends RecyclerView.Adapter<ProRecyclerView
         holder.t3.setText(proDataset.get(position).get_time());
         holder.t4.setText(proDataset.get(position).get_desig());
         holder.t5.setText(proDataset.get(position).get_desc());
+        holder.item_id = proDataset.get(position).get_id();
+        holder.pro_id = proDataset.get(position).get_proid();
     }
 
     @Override
@@ -54,6 +65,7 @@ public class ProRecyclerViewAdapter extends RecyclerView.Adapter<ProRecyclerView
 
         TextView t1, t2, t3, t4,t5;
         Button b1, b2;
+        int pro_id,item_id;
 
         public DataObjectHolder(View itemView) {
             super(itemView);
@@ -68,6 +80,79 @@ public class ProRecyclerViewAdapter extends RecyclerView.Adapter<ProRecyclerView
             itemView.setOnClickListener(this);
             b1.setOnClickListener(this);
             b2.setOnClickListener(this);
+
+            final View root = itemView;
+            root.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                    builder.setTitle("Projects/Experience Information");
+
+                    // Set up the input
+                    final EditText pro_title = new EditText(v.getContext());
+                    final EditText  pro_location=new  EditText(v.getContext());
+                    final EditText pro_duration = new EditText(v.getContext());
+                    final EditText pro_designation = new EditText(v.getContext());
+                    final EditText pro_description = new EditText(v.getContext());
+                    // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                    pro_title.setInputType(InputType.TYPE_CLASS_TEXT);
+                    pro_title.setText(t1.getText());
+
+                    pro_location.setInputType(InputType.TYPE_CLASS_TEXT);
+                    pro_location.setText(t2.getText());
+
+                    pro_duration.setInputType(InputType.TYPE_CLASS_TEXT);
+                    pro_duration.setText(t3.getText());
+
+                    pro_designation.setInputType(InputType.TYPE_CLASS_TEXT);
+                    pro_designation.setText(t4.getText());
+
+                    pro_description.setInputType(InputType.TYPE_CLASS_TEXT);
+                    pro_description.setText(t5.getText());
+                    //pro_description.setHint("Description");
+
+                    LinearLayout ll=new LinearLayout(v.getContext());
+                    ll.setOrientation(LinearLayout.VERTICAL);
+                    ll.addView(pro_title);
+                    ll.addView(pro_location);
+                    ll.addView(pro_duration);
+                    ll.addView(pro_designation);
+                    ll.addView(pro_description);
+
+
+                    builder.setView(ll);
+
+                    // Set up the buttons
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            String title = pro_title.getText().toString();
+                            String location = pro_location.getText().toString();
+                            String duration = pro_duration.getText().toString();
+                            String designation = pro_designation.getText().toString();
+                            String description = pro_description.getText().toString();
+
+
+                            PInfoDbHandler db = new PInfoDbHandler(root.getContext(),"",null,1);
+                            ProjectInfo p=new ProjectInfo(item_id,pro_id,title,location,duration,designation,description);
+                            db.updatePRInfo(p);
+                            Intent i = new Intent(root.getContext(), FormPro.class);
+                            root.getContext().startActivity(i);
+                            ((Activity)root.getContext()).finish();
+
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+                    builder.show();
+                }
+            });
         }
 
         @Override

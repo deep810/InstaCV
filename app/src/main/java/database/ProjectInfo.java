@@ -25,6 +25,16 @@ public class ProjectInfo {
         this._desig = desig;
     }
 
+    public ProjectInfo(int id,int proid, String title, String location, String time, String desig, String desc) {
+        this._proid = proid;
+        this._id = id;
+        this._title = title;
+        this._location = location;
+        this._time = time;
+        this._desc = desc;
+        this._desig = desig;
+    }
+
     public int get_id() {
         return _id;
     }

@@ -146,6 +146,7 @@ public class FormRef extends AppCompatActivity {
                         db.addRInfo(e);
                         Intent i = new Intent(FormRef.this,FormRef.class);
                         startActivity(i);
+                        finish();
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

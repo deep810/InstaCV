@@ -147,6 +147,7 @@ public class FormSkill extends AppCompatActivity {
                         db.addSInfo(e);
                         Intent i = new Intent(FormSkill.this,FormSkill.class);
                         startActivity(i);
+                        finish();
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

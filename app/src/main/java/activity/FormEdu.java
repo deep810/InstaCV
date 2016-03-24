@@ -144,6 +144,7 @@ public class FormEdu extends AppCompatActivity {
                         db.addEInfo(e);
                         Intent i = new Intent(FormEdu.this,FormEdu.class);
                         startActivity(i);
+                        finish();
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -154,6 +155,7 @@ public class FormEdu extends AppCompatActivity {
                 });
 
                 builder.show();
+
 
             }
         });
