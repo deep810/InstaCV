@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -43,6 +44,8 @@ public class FormPersonal extends AppCompatActivity {
     int year_x,month_x,day_x;
     static final int DIALOG_ID=0;
 
+    String title;
+
 
 
     @Override
@@ -52,7 +55,7 @@ public class FormPersonal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_personal);
 
-
+        title=getIntent().getStringExtra("Title");
 
         final Calendar cal=Calendar.getInstance();
         year_x=cal.get(Calendar.YEAR);
@@ -183,6 +186,12 @@ public class FormPersonal extends AppCompatActivity {
     private void submitForm() {
         PInfoDbHandler db = new PInfoDbHandler(this,"",null,1);
 
+        ItemStatus i_status=new ItemStatus(title,1,0,0,0,0,0);
+        long id = db.addStatus(i_status);
+        Log.d("Insted Item_status: ",String.valueOf(id));
+
+
+        //String fname, String add,String dob,String cont,String email,String objective
 // db.addPInfo(new PersonalInfo(inputpName.getEditText().toString(),inputLayoutaddress.getEditText().toString()
 //        ,inputLayoutdob.getEditText().toString(),inputLayoutpName.getEditText().toString(),inputLayoutpName.getEditText().toString()));
 //        db.addPInfo(new PersonalInfo(1, "abc", "asdad", "23/12/2314", "fwefwef", "fefwfew", "abc"));

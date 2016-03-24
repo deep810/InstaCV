@@ -782,7 +782,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
     * */
 
     //Add values to the table
-    public void addStatus(ItemStatus r) {
+    public long addStatus(ItemStatus r) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -800,8 +800,9 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
 
 
         // Inserting Row
-        db.insert(TABLE_STATUS, null, values);
+        long id = db.insert(TABLE_STATUS, null, values);
         db.close(); // Closing database connection
+        return id;
     }
 
     //get single entry
@@ -893,6 +894,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         // return count
         return cursor.getCount();
     }
+
 
 
 }
