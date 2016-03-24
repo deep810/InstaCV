@@ -837,7 +837,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
                 r.set_contact(cursor.getString(4));
                 r.set_org(cursor.getString(5));
 
-                
+
 
                 List.add(r);
             } while (cursor.moveToNext());
