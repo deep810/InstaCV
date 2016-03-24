@@ -161,6 +161,41 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         return p;
     }
 
+
+    //get all pInfo by item_id
+
+    //get all entries
+    public List<PersonalInfo> getAllPInfoById(int i_id) {
+        List<PersonalInfo> List = new ArrayList<PersonalInfo>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_PINFO + " WHERE id = "+i_id;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+//        Log.i("cursor",cursor.toString());
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                PersonalInfo p = new PersonalInfo();
+                p.set_id(Integer.parseInt(cursor.getString(0)));
+                p.set_fullname(cursor.getString(1));
+                p.set_address(cursor.getString(2));
+                p.set_dob(cursor.getString(3));
+                p.set_contact(cursor.getString(4));
+                p.set_email(cursor.getString(5));
+                p.set_objective(cursor.getString(6));
+
+                List.add(p);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return List;
+    }
+
+
     //get all entries
     public List<PersonalInfo> getAllPInfo() {
         List<PersonalInfo> List = new ArrayList<PersonalInfo>();
@@ -868,10 +903,6 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
                 r.set_pos(cursor.getString(3));
                 r.set_contact(cursor.getString(4));
                 r.set_org(cursor.getString(5));
-
-
-
-
 
 
 

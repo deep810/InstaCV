@@ -9,20 +9,27 @@ import android.widget.LinearLayout;
 
 import com.example.vishwashrisairm.materialdesign.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import adapter.EduRecyclerViewAdapter;
 import adapter.ExcrRecyclerViewAdapter;
+import adapter.PerRecyvlerViewAdapter;
 import adapter.ProRecyclerViewAdapter;
 import adapter.RefRecyclerViewAdapter;
 import adapter.SkillsRecyclerViewAdapter;
 import database.EduInfo;
+import database.PersonalInfo;
 import helper.PInfoDbHandler;
 
 /**
  * Created by vishwashrisairm on 24/3/16.
  */
 public class ItemActivity extends AppCompatActivity {
+
+    private RecyclerView perItemRecyclerView;
+    private RecyclerView.Adapter perItemAdapter;
+    private RecyclerView.LayoutManager perItemLayoutManager;
 
     private RecyclerView eduItemRecyclerView;
     private RecyclerView.Adapter eduItemAdapter;
@@ -44,6 +51,8 @@ public class ItemActivity extends AppCompatActivity {
     private RecyclerView.Adapter refItemAdapter;
     private RecyclerView.LayoutManager refItemLayoutManager;
 
+    private int item_id;
+
 
     //LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
 
@@ -53,6 +62,8 @@ public class ItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_view);
 
+        item_id=getIntent().getIntExtra("item_id",0);
+
         PInfoDbHandler db = new PInfoDbHandler(this,"",null,1);
 
        // eduItemRecyclerView.setLayoutParams(params);
@@ -61,13 +72,19 @@ public class ItemActivity extends AppCompatActivity {
         //excrItemRecyclerView.setLayoutParams(params);
         //refItemRecyclerView.setLayoutParams(params);
 
+        perItemRecyclerView = (RecyclerView) findViewById(R.id.perItemRecyclerView);
+        perItemRecyclerView.setHasFixedSize(false);
+        perItemLayoutManager = new LinearLayoutManager(this);
+        perItemRecyclerView.setLayoutManager(perItemLayoutManager);
+        perItemAdapter = new PerRecyvlerViewAdapter(db.getAllPInfoById(item_id));
+        perItemRecyclerView.setAdapter(perItemAdapter);
 
         eduItemRecyclerView=(RecyclerView)findViewById(R.id.eduItemRecyclerView);
         eduItemRecyclerView.setHasFixedSize(true);
         eduItemLayoutManager=new LinearLayoutManager(this);
         eduItemRecyclerView.setLayoutManager(eduItemLayoutManager);
 //        mItems=getDataSet();
-        eduItemAdapter=new EduRecyclerViewAdapter(db.getAllEInfo());
+        eduItemAdapter=new EduRecyclerViewAdapter(db.getAllEInfoByID(item_id));
         eduItemRecyclerView.setAdapter(eduItemAdapter);
 
         proItemRecyclerView=(RecyclerView)findViewById(R.id.proItemRecyclerView);
@@ -75,7 +92,7 @@ public class ItemActivity extends AppCompatActivity {
         proItemLayoutManager=new LinearLayoutManager(this);
         proItemRecyclerView.setLayoutManager(proItemLayoutManager);
 //        mItems=getDataSet();
-        proItemAdapter=new ProRecyclerViewAdapter(db.getAllPRInfo());
+        proItemAdapter=new ProRecyclerViewAdapter(db.getAllPRInfoById(item_id));
         proItemRecyclerView.setAdapter(proItemAdapter);
 
         skillItemRecyclerView=(RecyclerView)findViewById(R.id.skillItemRecyclerView);
@@ -83,7 +100,7 @@ public class ItemActivity extends AppCompatActivity {
         skillItemLayoutManager=new LinearLayoutManager(this);
         skillItemRecyclerView.setLayoutManager(skillItemLayoutManager);
 //        mItems=getDataSet();
-        skillItemAdapter=new SkillsRecyclerViewAdapter(db.getAllSInfo());
+        skillItemAdapter=new SkillsRecyclerViewAdapter(db.getAllSInfoById(item_id));
         skillItemRecyclerView.setAdapter(skillItemAdapter);
 
         excrItemRecyclerView=(RecyclerView)findViewById(R.id.excrItemRecyclerView);
@@ -91,7 +108,7 @@ public class ItemActivity extends AppCompatActivity {
         excrItemLayoutManager=new LinearLayoutManager(this);
         excrItemRecyclerView.setLayoutManager(excrItemLayoutManager);
 //        mItems=getDataSet();
-        excrItemAdapter=new ExcrRecyclerViewAdapter(db.getAllCInfo());
+        excrItemAdapter=new ExcrRecyclerViewAdapter(db.getAllCInfoById(item_id));
         excrItemRecyclerView.setAdapter(excrItemAdapter);
 
         refItemRecyclerView=(RecyclerView)findViewById(R.id.refItemRecyclerView);
@@ -99,7 +116,7 @@ public class ItemActivity extends AppCompatActivity {
         refItemLayoutManager=new LinearLayoutManager(this);
         refItemRecyclerView.setLayoutManager(refItemLayoutManager);
 //        mItems=getDataSet();
-        refItemAdapter=new RefRecyclerViewAdapter(db.getAllRInfo());
+        refItemAdapter=new RefRecyclerViewAdapter(db.getAllRInfoById(item_id));
         refItemRecyclerView.setAdapter(refItemAdapter);
 
 

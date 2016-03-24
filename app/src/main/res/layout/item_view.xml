@@ -35,12 +35,12 @@
         android:id="@+id/personalTextView"
         android:layout_gravity="center_horizontal" />
 
-    <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:id="@+id/eduRecyclerView"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:scrollbars="vertical"></android.support.v7.widget.RecyclerView>-->
-
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/perItemRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="275dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        ></android.support.v7.widget.RecyclerView>
 
 
     <TextView

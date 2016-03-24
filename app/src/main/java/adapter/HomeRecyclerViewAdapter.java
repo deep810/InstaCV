@@ -33,6 +33,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
 
         TextView t1,t2;
         Button b1,b2;
+        int item_id;
         int x;
 
         public DataObjectHolder(View itemView) {
@@ -55,6 +56,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
                     // Need details of the movie to be sent to the next activity.
 
                     Intent i = new Intent(v.getContext(), ItemActivity.class);
+                    i.putExtra("item_id",item_id);
                    /* Intent intent = new Intent(context, MovieDetail.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("EXTRA_ART_URL", card.getAlbumArtURL());
@@ -64,7 +66,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
                     intent.putExtra("EXTRA_ReleaseDate", card.getReleaseDate());*/
                     v.getContext().startActivity(i);
 
-                    Toast.makeText(v.getContext(),"Edit:"+t1.getText(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(v.getContext(),"Item_ID:"+item_id, Toast.LENGTH_LONG).show();
 
 
                 }
@@ -107,7 +109,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
     public void onBindViewHolder(HomeRecyclerViewAdapter.DataObjectHolder holder, int position) {
         holder.t1.setText(hDataset.get(position).getTitle());
 //        holder.t2.setText(hDataset.get(position).get_item_id());
-
+        holder.item_id = hDataset.get(position).get_item_id();
 
     }
 
