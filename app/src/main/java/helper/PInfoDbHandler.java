@@ -304,6 +304,7 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put("edu_id", e.get_eduid());
+        values.put("item_id",e.get_id());
         values.put("degree", e.get_degree());
         values.put("yop", e.get_yop());
         values.put("cgpa", e.get_cgpa());

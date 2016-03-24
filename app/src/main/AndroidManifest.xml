@@ -131,6 +131,16 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="activity.EditProfile"
+            android:label="@string/register" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
 
       <!--  Kinvey Signin and register ends -->
     </application>

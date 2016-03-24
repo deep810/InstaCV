@@ -1,5 +1,7 @@
 package adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,7 +16,9 @@ import com.example.vishwashrisairm.materialdesign.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import activity.EditProfile;
 import database.ItemStatus;
+import helper.PInfoDbHandler;
 
 /**
  * Created by vishwashrisairm on 21/3/16.
@@ -28,26 +32,51 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
 
         TextView t1,t2;
         Button b1,b2;
+        int x;
 
         public DataObjectHolder(View itemView) {
             super(itemView);
+            View root = itemView;
 //            label=(TextView)itemView.findViewById(R.id.home_card_1);
             t1=(TextView)itemView.findViewById(R.id.home_card_1);
             t2=(TextView)itemView.findViewById(R.id.home_card_2);
             b1=(Button)itemView.findViewById(R.id.heb);
             b2=(Button)itemView.findViewById(R.id.hdb);
 
-            Log.i(LOG_TAG,"Adding Listener");
+            Log.i(LOG_TAG, "Adding Listener");
             itemView.setOnClickListener(this);
             b1.setOnClickListener(this);
             b2.setOnClickListener(this);
+            root.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    // Need details of the movie to be sent to the next activity.
+
+                    Intent i = new Intent(v.getContext(), EditProfile.class);
+                   /* Intent intent = new Intent(context, MovieDetail.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("EXTRA_ART_URL", card.getAlbumArtURL());
+                    intent.putExtra("EXTRA_NAME", card.getName());
+                    intent.putExtra("EXTRA_Synopsis", card.getSynopsis());
+                    intent.putExtra("EXTRA_Rating", card.getRating());
+                    intent.putExtra("EXTRA_ReleaseDate", card.getReleaseDate());*/
+                    v.getContext().startActivity(i);
+
+                    Toast.makeText(v.getContext(),"Edit:"+t1.getText(), Toast.LENGTH_LONG).show();
+
+
+                }
+            });
 
         }
 
         @Override
         public void onClick(View v) {
+            ItemStatus i = (ItemStatus) v.getTag();
             if (v.getId() == b1.getId()){
-                Toast.makeText(v.getContext(), "Edit: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(v.getContext(), "Edit: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+
             } else if(v.getId() == b2.getId()){
                 Toast.makeText(v.getContext(), "Delete: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
             }
@@ -58,6 +87,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
 
     public void setOnItemClickListener(MyClickListener myClickListener){
         this.myClickListener=myClickListener;
+
     }
 
     public HomeRecyclerViewAdapter(List<ItemStatus> myDataSet){
@@ -76,6 +106,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
     public void onBindViewHolder(HomeRecyclerViewAdapter.DataObjectHolder holder, int position) {
         holder.t1.setText(hDataset.get(position).getTitle());
 //        holder.t2.setText(hDataset.get(position).get_item_id());
+
 
     }
 

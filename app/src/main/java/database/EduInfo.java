@@ -24,6 +24,15 @@ public class EduInfo {
         this._institute=institute;
 
     }
+    public EduInfo(int id,int eduid, String degree,String yop,String cgpa,String institute){
+        this._id=id;
+        this._eduid=eduid;
+        this._degree=degree;
+        this._yop=yop;
+        this._cgpa=cgpa;
+        this._institute=institute;
+
+    }
 
     public int get_id() {
         return _id;
