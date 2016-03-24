@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import activity.EditProfile;
+import activity.ItemActivity;
 import database.ItemStatus;
 import helper.PInfoDbHandler;
 
@@ -53,7 +54,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
 
                     // Need details of the movie to be sent to the next activity.
 
-                    Intent i = new Intent(v.getContext(), EditProfile.class);
+                    Intent i = new Intent(v.getContext(), ItemActivity.class);
                    /* Intent intent = new Intent(context, MovieDetail.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("EXTRA_ART_URL", card.getAlbumArtURL());
