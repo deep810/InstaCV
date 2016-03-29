@@ -32,8 +32,10 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
     public static class DataObjectHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView t1,t2;
-        Button b1,b2;
+
         int item_id;
+
+//        Button b1,b2;
         int x;
 
         public DataObjectHolder(View itemView) {
@@ -42,13 +44,13 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
 //            label=(TextView)itemView.findViewById(R.id.home_card_1);
             t1=(TextView)itemView.findViewById(R.id.home_card_1);
             t2=(TextView)itemView.findViewById(R.id.home_card_2);
-            b1=(Button)itemView.findViewById(R.id.heb);
-            b2=(Button)itemView.findViewById(R.id.hdb);
+//            b1=(Button)itemView.findViewById(R.id.heb);
+//            b2=(Button)itemView.findViewById(R.id.hdb);
 
             Log.i(LOG_TAG, "Adding Listener");
             itemView.setOnClickListener(this);
-            b1.setOnClickListener(this);
-            b2.setOnClickListener(this);
+//            b1.setOnClickListener(this);
+//            b2.setOnClickListener(this);
             root.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -77,12 +79,12 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
         @Override
         public void onClick(View v) {
             ItemStatus i = (ItemStatus) v.getTag();
-            if (v.getId() == b1.getId()){
-                //Toast.makeText(v.getContext(), "Edit: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
-
-            } else if(v.getId() == b2.getId()){
-                Toast.makeText(v.getContext(), "Delete: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
-            }
+//            if (v.getId() == b1.getId()){
+//                //Toast.makeText(v.getContext(), "Edit: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+//
+//            } else if(v.getId() == b2.getId()){
+//                Toast.makeText(v.getContext(), "Delete: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+//            }
 
             myClickListener.onItemClick(getAdapterPosition(),v);
         }

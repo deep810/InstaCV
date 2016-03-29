@@ -62,7 +62,7 @@ public class ExcrRecyclerViewAdapter extends RecyclerView.Adapter<ExcrRecyclerVi
     public static class DataObjectHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView t1;
-        Button b1, b2;
+//        Button b1, b2;
         int item_id;
         int extracurr_id;
 //        private MyClickListener eduClickListener;
@@ -72,13 +72,13 @@ public class ExcrRecyclerViewAdapter extends RecyclerView.Adapter<ExcrRecyclerVi
 //            label=(TextView)itemView.findViewById(R.id.home_card_1);
             t1 = (TextView) itemView.findViewById(R.id.excr_card_1);
 
-            b1 = (Button) itemView.findViewById(R.id.excreb);
-            b2 = (Button) itemView.findViewById(R.id.excrdb);
+//            b1 = (Button) itemView.findViewById(R.id.excreb);
+//            b2 = (Button) itemView.findViewById(R.id.excrdb);
 
             Log.i(LOG_TAG, "Adding Listener");
             itemView.setOnClickListener(this);
-            b1.setOnClickListener(this);
-            b2.setOnClickListener(this);
+//            b1.setOnClickListener(this);
+//            b2.setOnClickListener(this);
 
             final View root = itemView;
             root.setOnClickListener(new View.OnClickListener() {
@@ -136,11 +136,11 @@ public class ExcrRecyclerViewAdapter extends RecyclerView.Adapter<ExcrRecyclerVi
 
         @Override
         public void onClick(View v) {
-            if (v.getId() == b1.getId()){
-                Toast.makeText(v.getContext(), "Edit: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
-            } else if(v.getId() == b2.getId()){
-                Toast.makeText(v.getContext(), "Delete: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
-            }
+//            if (v.getId() == b1.getId()){
+//                Toast.makeText(v.getContext(), "Edit: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+//            } else if(v.getId() == b2.getId()){
+//                Toast.makeText(v.getContext(), "Delete: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+//            }
 
             excrClickListener.onItemClick(getAdapterPosition(), v);
 

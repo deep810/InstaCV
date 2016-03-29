@@ -68,7 +68,7 @@ public class EduRecyclerViewAdapter extends RecyclerView.Adapter<EduRecyclerView
     public static class DataObjectHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView t1, t2, t3, t4;
-        Button b1, b2;
+//        Button b1, b2;
         int edu_id;
         int item_id;
 //        private MyClickListener eduClickListener;
@@ -80,13 +80,13 @@ public class EduRecyclerViewAdapter extends RecyclerView.Adapter<EduRecyclerView
             t2 = (TextView) itemView.findViewById(R.id.edu_card_2);
             t3 = (TextView) itemView.findViewById(R.id.edu_card_3);
             t4 = (TextView) itemView.findViewById(R.id.edu_card_4);
-            b1 = (Button) itemView.findViewById(R.id.eeb);
-            b2 = (Button) itemView.findViewById(R.id.edb);
+//            b1 = (Button) itemView.findViewById(R.id.eeb);
+//            b2 = (Button) itemView.findViewById(R.id.edb);
 
             Log.i(LOG_TAG, "Adding Listener");
             itemView.setOnClickListener(this);
-            b1.setOnClickListener(this);
-            b2.setOnClickListener(this);
+//            b1.setOnClickListener(this);
+//            b2.setOnClickListener(this);
 
             final View root = itemView;
             root.setOnClickListener(new View.OnClickListener() {
@@ -161,11 +161,11 @@ public class EduRecyclerViewAdapter extends RecyclerView.Adapter<EduRecyclerView
 
         @Override
         public void onClick(View v) {
-            if (v.getId() == b1.getId()){
-                Toast.makeText(v.getContext(), "Edit: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
-            } else if(v.getId() == b2.getId()){
-                Toast.makeText(v.getContext(), "Delete: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
-            }
+//            if (v.getId() == b1.getId()){
+//                Toast.makeText(v.getContext(), "Edit: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+//            } else if(v.getId() == b2.getId()){
+//                Toast.makeText(v.getContext(), "Delete: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+//            }
             Log.i("test",String.valueOf(eduClickListener));
             eduClickListener.onItemClick(getAdapterPosition(), v);
 

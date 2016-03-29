@@ -71,7 +71,7 @@ public class RefRecyclerViewAdapter extends RecyclerView.Adapter<RefRecyclerView
     public static class DataObjectHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView t1, t2, t3, t4;
-        Button b1, b2;
+//        Button b1, b2;
         int item_id,ref_id;
 //        private MyClickListener eduClickListener;
 
@@ -82,13 +82,13 @@ public class RefRecyclerViewAdapter extends RecyclerView.Adapter<RefRecyclerView
             t2 = (TextView) itemView.findViewById(R.id.ref_card_2);
             t3 = (TextView) itemView.findViewById(R.id.ref_card_3);
             t4 = (TextView) itemView.findViewById(R.id.ref_card_4);
-            b1 = (Button) itemView.findViewById(R.id.eeb);
-            b2 = (Button) itemView.findViewById(R.id.edb);
+//            b1 = (Button) itemView.findViewById(R.id.eeb);
+//            b2 = (Button) itemView.findViewById(R.id.edb);
 
             Log.i(LOG_TAG, "Adding Listener");
             itemView.setOnClickListener(this);
-            b1.setOnClickListener(this);
-            b2.setOnClickListener(this);
+//            b1.setOnClickListener(this);
+//            b2.setOnClickListener(this);
 
 
             final View root = itemView;
@@ -164,11 +164,11 @@ public class RefRecyclerViewAdapter extends RecyclerView.Adapter<RefRecyclerView
 
         @Override
         public void onClick(View v) {
-            if (v.getId() == b1.getId()){
-                Toast.makeText(v.getContext(), "Edit: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
-            } else if(v.getId() == b2.getId()){
-                Toast.makeText(v.getContext(), "Delete: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
-            }
+//            if (v.getId() == b1.getId()){
+//                Toast.makeText(v.getContext(), "Edit: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+//            } else if(v.getId() == b2.getId()){
+//                Toast.makeText(v.getContext(), "Delete: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+//            }
             Log.i("test",String.valueOf(refClickListener));
             refClickListener.onItemClick(getAdapterPosition(), v);
 

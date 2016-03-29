@@ -25,7 +25,7 @@ import helper.PInfoDbHandler;
 /**
  * Created by darshit on 3/24/16.
  */
-public class PerRecyvlerViewAdapter extends RecyclerView.Adapter<PerRecyvlerViewAdapter.DataObjectHolder> {
+public class    PerRecyvlerViewAdapter extends RecyclerView.Adapter<PerRecyvlerViewAdapter.DataObjectHolder> {
 
     private static String LOG_TAG = "PerRecyclerViewAdapter";
     private List<PersonalInfo> perDataset;
