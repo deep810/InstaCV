@@ -194,7 +194,7 @@ public class FormRef extends AppCompatActivity {
 
     public void submitForm(View view) {
 
-        Intent intent = new Intent(FormRef.this,FormRef.class);
+        Intent intent = new Intent(FormRef.this,MainActivity.class);
         intent.putExtra("item_id",item_id);
         startActivity(intent);
 
