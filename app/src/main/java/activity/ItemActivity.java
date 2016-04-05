@@ -37,6 +37,7 @@ import com.itextpdf.tool.xml.XMLWorkerHelper;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Ref;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,6 +103,7 @@ public class ItemActivity extends AppCompatActivity {
         item_id=getIntent().getIntExtra("item_id",0);
 
         PInfoDbHandler db = new PInfoDbHandler(this,"",null,1);
+        final PersonalInfo per=db.getPInfo(item_id);
 
        // eduItemRecyclerView.setLayoutParams(params);
         //proItemRecyclerView.setLayoutParams(params);
@@ -114,6 +116,70 @@ public class ItemActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         toolbar.setTitle("My CV");
 
+//        Edit Buttons
+//        Button btn1=(Button)findViewById(R.id.item_per_button);
+//        btn1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(ItemActivity.this,FormPersonal.class);
+//                i.putExtra("item_id",item_id);
+//                startActivity(i);
+//            }
+//        });
+
+        Button btn2=(Button)findViewById(R.id.item_edu_button);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ItemActivity.this,FormEdu.class);
+                i.putExtra("item_id",item_id);
+                startActivity(i);
+            }
+        });
+
+        Button btn3=(Button)findViewById(R.id.item_skill_button);
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ItemActivity.this,FormSkill.class);
+                i.putExtra("item_id",item_id);
+                startActivity(i);
+            }
+        });
+
+        Button btn4=(Button)findViewById(R.id.item_pro_button);
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ItemActivity.this,FormPro.class);
+                i.putExtra("item_id",item_id);
+                startActivity(i);
+            }
+        });
+
+        Button btn5=(Button)findViewById(R.id.item_excra_button);
+        btn5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ItemActivity.this,FormExcr.class);
+                i.putExtra("item_id",item_id);
+                startActivity(i);
+            }
+        });
+
+        Button btn6=(Button)findViewById(R.id.item_ref_button);
+        btn6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ItemActivity.this,FormRef.class);
+                i.putExtra("item_id",item_id);
+                startActivity(i);
+            }
+        });
+
+
+
+
         ImageButton pre=(ImageButton)findViewById(R.id.button_preview);
         pre.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,13 +191,15 @@ public class ItemActivity extends AppCompatActivity {
                 builder.setTitle("Choose a template");
                 builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int item) {
-                        String path = Environment.getExternalStorageDirectory().toString()+"/test.pdf";
-                        File file = new File(path);
-                        file.getParentFile().mkdirs();
+                        String path;
+
                         switch(item)
                         {
                             case 0:
                                 try {
+                                    path = Environment.getExternalStorageDirectory().toString()+"/InstaCV/"+per.get_fullname()+"_"+(item+1)+".pdf";
+                                    File file = new File(path);
+                                    file.getParentFile().mkdirs();
                                     createPdf(path,0);
                                 } catch (IOException e) {
                                     e.printStackTrace();
@@ -141,6 +209,9 @@ public class ItemActivity extends AppCompatActivity {
                                 break;
                             case 1:
                                 try {
+                                     path = Environment.getExternalStorageDirectory().toString()+"/InstaCV/"+per.get_fullname()+"_"+(item+1)+".pdf";
+                                    File file = new File(path);
+                                    file.getParentFile().mkdirs();
                                     createPdf(path,1);
                                 } catch (IOException e) {
                                     e.printStackTrace();
@@ -150,6 +221,9 @@ public class ItemActivity extends AppCompatActivity {
                                 break;
                             case 2:
                                 try {
+                                     path = Environment.getExternalStorageDirectory().toString()+"/InstaCV/"+per.get_fullname()+"_"+(item+1)+".pdf";
+                                    File file = new File(path);
+                                    file.getParentFile().mkdirs();
                                     createPdf(path,2);
                                 } catch (IOException e) {
                                     e.printStackTrace();
@@ -159,6 +233,9 @@ public class ItemActivity extends AppCompatActivity {
                                 break;
                             case 3:
                                 try {
+                                     path = Environment.getExternalStorageDirectory().toString()+"/InstaCV/"+per.get_fullname()+"_"+(item+1)+".pdf";
+                                    File file = new File(path);
+                                    file.getParentFile().mkdirs();
                                     createPdf(path,3);
                                 } catch (IOException e) {
                                     e.printStackTrace();
@@ -168,6 +245,9 @@ public class ItemActivity extends AppCompatActivity {
                                 break;
                             case 4:
                                 try {
+                                    path = Environment.getExternalStorageDirectory().toString()+"/InstaCV/"+per.get_fullname()+"_"+(item+1)+".pdf";
+                                    File file = new File(path);
+                                    file.getParentFile().mkdirs();
                                     createPdf(path,4);
                                 } catch (IOException e) {
                                     e.printStackTrace();
@@ -179,7 +259,10 @@ public class ItemActivity extends AppCompatActivity {
                         }
                         levelDialog.dismiss();
 
+
 //                        Open pdf file
+                        path = Environment.getExternalStorageDirectory().toString()+"/InstaCV/"+per.get_fullname()+"_"+(item+1)+".pdf";
+
                         File pdfFile = new File(path);//File path
                         if (pdfFile.exists()) //Checking for the file is exist or not
                         {
@@ -257,12 +340,12 @@ public class ItemActivity extends AppCompatActivity {
 
     private void createPdf(String file,int choice) throws IOException, DocumentException {
         PInfoDbHandler db = new PInfoDbHandler(ItemActivity.this,"",null,1);
-        PersonalInfo p=db.getPInfo(1);
-        List<EduInfo> edu=db.getAllEInfoByID(1);
-        List<CurrInfo>c=db.getAllCInfoById(1);
-        List<SkillsInfo>s=db.getAllSInfoById(1);
-        List<ProjectInfo>pr=db.getAllPRInfoById(1);
-        List<RefInfo>r=db.getAllRInfoById(1);
+        PersonalInfo p=db.getPInfo(item_id);
+        List<EduInfo> edu=db.getAllEInfoByID(item_id);
+        List<CurrInfo>c=db.getAllCInfoById(item_id);
+        List<SkillsInfo>s=db.getAllSInfoById(item_id);
+        List<ProjectInfo>pr=db.getAllPRInfoById(item_id);
+        List<RefInfo>r=db.getAllRInfoById(item_id);
 
         Document document = new Document();
         PdfWriter writer=PdfWriter.getInstance(document, new FileOutputStream(file));
@@ -389,23 +472,143 @@ public class ItemActivity extends AppCompatActivity {
 
                 break;
             case 1:
-                html="<body>" +
-                        "<h1>Template2</h1>" +
+                html="<body style=\"border:0;font:inherit;font-size:100%;margin:0;padding:0;vertical-align:baseline;\">" +
+                        "<div id=\"cv\" class=\"instaFade\" style=\"width: 100%;max-width: 800px;background: #f3f3f3;margin: 30px auto;\">";
+
+                per_info="<div class=\"mainDetails\" style=\"padding: 0px 35px;\tborder-bottom: 2px solid #cf8a05;\tbackground: #ededed;\">" +
+                        "<div id=\"name\" style=\"float: left;\">" +
+                        "<h1 style=\"font-size: 2em;font-weight: 700;font-family: 'Rokkitt', Helvetica, Arial, sans-serif;margin-bottom: -6px;\">"+p.get_fullname()+"</h1>" +
+                        "<h2 style=\"font-size: 1.5em;margin-left: 2px;font-family: 'Rokkitt', Helvetica, Arial, sans-serif;\">Student(Job Title)/"+p.get_dob()+"</h2>" +
+                        "</div>" +
+                        "<div id=\"contactDetails\" style=\"float: right;margin-top:25px;\">" +
+                        "<ul style=\"list-style-type: none;font-size: 0.9em;margin-top: 2px;\">" +
+                        "<li style=\"margin-bottom: 3px;\tcolor: #444;\">e: "+p.get_email()+"</li>" +
+                        "<li style=\"margin-bottom: 3px;\tcolor: #444;\">m: "+p.get_contact()+"</li>" +
+                        "</ul>" +
+                        "</div>" +
+                        "<div class=\"clear\" style=\"clear: both;\"></div>" +
+                        "</div>" +
+                        "<div id=\"mainArea\" style=\"padding: 15px 35px;border-bottom: 1px solid #cf8a05;background: #ededed;\">" +
+
+                        "<!--Career objective-->" +
+                        "<section style=\"border-top: 1px solid #dedede;padding: 0px 0 0;\">" +
+                        "<article>" +
+                        "<div class=\"sectionTitle\" style=\"float: left;width: 25%;\">" +
+                        "<h1 style=\"font-family: 'Rokkitt', Helvetica, Arial, sans-serif;font-style: italic;\tfont-size: 1.3em;color: #cf8a05;\">Personal Profile</h1>" +
+                        "</div>" +
+                        "<div class=\"sectionContent\" style=\"float:right;width: 100%;\">" +
+                        "<p>"+p.get_objective()+"</p>\n" +
+                        "</div>" +
+                        "</article>" +
+                        "<div class=\"clear\" style=\"clear:both;\"></div>" +
+                        "</section>";
+                html+=per_info;
+
+
+                exper_info="<section style=\"border-top: 1px solid #dedede;padding: 0px 0 0;\">\n" +
+                        "<article>" +
+                        "<div class=\"sectionTitle\" style=\"float: left;width: 25%;\">" +
+                        "<h1 style=\"font-family: 'Rokkitt', Helvetica, Arial, sans-serif;font-style: italic;\tfont-size: 1.3em;color: #cf8a05;\">Work experience</h1>" +
+                        "</div>" +
+
+                        "<div class=\"sectionContent\" style=\"float:right;width:100%;\">";
+                for(ProjectInfo item:pr) {
+                    exper_info += "<article>" +
+                            "<h2 style=\"font-family: 'Rokkitt', Helvetica, Arial, sans-serif;font-size: 1.1em;margin-bottom: -2px;\">" + item.get_title() + "," + item.get_desig() + "</h2>" +
+                            "<p class=\"subDetails\" style=\"font-size: 0.8em;\tfont-style: italic;\tmargin-bottom: 3px;\">" + item.get_time() + "</p>\n" +
+                            "<p>" + item.get_desc() + "</p>\n" +
+                            "</article>";
+                }
+
+                exper_info+="</div>" +
+                        "</article>" +
+                        "<div class=\"clear\" style=\"clear:both;\"></div>" +
+
+                        "</section>";
+                html+=exper_info;
+
+                skill_info="<section style=\"border-top: 1px solid #dedede;padding: 0px 0 0;\">\n" +
+                        "<article>\n" +
+                        "<div class=\"sectionTitle\" style=\"float: left;width: 25%;\">\n" +
+                        "<h1 style=\"font-family: 'Rokkitt', Helvetica, Arial, sans-serif;font-style: italic;\tfont-size: 1.3em;color: #cf8a05;\">Key Skills</h1>\n" +
+                        "</div>\n" +
+                        "<div class=\"sectionContent\" style=\"float:right;width: 100%;\">\n" +
+                        "<ul class=\"keySkills\" style=\"list-style-type: none;\t-moz-column-count:3;-webkit-column-count:3;\tcolumn-count:3;\n" +
+                        "margin-bottom: 20px;font-size: 1em;\tcolor: #444;\">" ;
+                for(SkillsInfo item:s)
+                    skill_info+="<li>"+item.get_nameofskill()+"</li>";
+
+                skill_info+="</ul>" +
+                        "</div>" +
+                        "</article>" +
+                        "<div class=\"clear\" style=\"clear:both;\"></div>" +
+
+                        "</section>";
+                html+=skill_info;
+
+
+                edu_info="<section style=\"border-top: 1px solid #dedede;padding: 0px 0 0;\">\n" +
+                        "<article>\n" +
+                        "<div class=\"sectionTitle\" style=\"float: left;width: 25%;\">\n" +
+                        "<h1 style=\"font-family: 'Rokkitt', Helvetica, Arial, sans-serif;font-style: italic;\tfont-size: 1.3em;color: #cf8a05;\">Education Information</h1>\n" +
+                        "</div>\n" +
+                        "<div class=\"sectionContent\" style=\"float:right;width: 100%;\">\n";
+
+                for(EduInfo item:edu) {
+                    edu_info += "<article>\n" +
+
+                            "<h2 style=\"font-family: 'Rokkitt', Helvetica, Arial, sans-serif;font-size: 1.1em;margin-bottom: -2px;\">"+item.get_degree()+"</h2> <div style=\"float:right;\">"+item.get_yop()+"</div>\n" +
+                            "<p class=\"subDetails\" style=\"font-size: 0.8em;\tfont-style: italic;\tmargin-bottom: 3px;\">"+item.get_institute()+"</p>\n" +
+                            "<p>Marks:-"+item.get_cgpa()+"</p>\n" +
+                            "</article>\n";
+                }
+
+                edu_info+="</div>\n" +
+                        "</article>\n" +
+                        "<div class=\"clear\" style=\"clear:both;\"></div>\n" +
+                        "</section>\t";
+                html+=edu_info;
+
+                excra_info="<section style=\"border-top: 1px solid #dedede;padding: 0px 0 0;\">\n" +
+                        "<article>\n" +
+                        "<div class=\"sectionTitle\" style=\"float: left;width: 25%;\">\n" +
+                        "<h1 style=\"font-family: 'Rokkitt', Helvetica, Arial, sans-serif;font-style: italic;\tfont-size: 1.3em;color: #cf8a05;\">Extracurricular Activities</h1>" +
+                        "</div>" +
+                        "<div class=\"sectionContent\" style=\"float:right;width:100%;\">" +
+                        "<ul class=\"keySkills\" style=\"list-style-type: none;\t-moz-column-count:1;-webkit-column-count:1;\tcolumn-count:1;\n" +
+                        "margin-bottom: 20px;font-size: 1em;\tcolor: #444;\">" ;
+                for(CurrInfo item:c) {
+                    excra_info += "<li>"+item.get_name()+"</li>";
+                }
+                excra_info+= "</ul>" +
+                        "</div>" +
+                        "</article>" +
+                        "<div class=\"clear\" style=\"clear:both;\"></div>" +
+                        "</section>";
+                html+=excra_info;
+
+                ref_info="<section style=\"border-top: 1px solid #dedede;padding: 0px 0 0;\">\n" +
+                        "<article>" +
+                        "<div class=\"sectionTitle\" style=\"float: left;width: 25%;\">" +
+                        "<h1 style=\"font-family: 'Rokkitt', Helvetica, Arial, sans-serif;font-style: italic;\tfont-size: 1.3em;color: #cf8a05;\">References</h1>\n" +
+                        "</div>" +
+                        "<div class=\"sectionContent\" style=\"float:right;width:100%;\">" ;
+                for(RefInfo item:r) {
+                    ref_info += "<article>" +
+                            "<h2 style=\"font-family: 'Rokkitt', Helvetica, Arial, sans-serif;font-size: 1.1em;margin-bottom: -2px;\">"+item.get_rname()+"</h2>\n" +
+                            "<p class=\"subDetails\" style=\"font-size: 1em;margin-bottom: 3px;\">"+item.get_pos()+","+item.get_org()+" </p>\n" +
+                            "<p>"+item.get_contact()+"</p>" +
+                            "</article>";
+                }
+                 ref_info+="</div>" +
+                        "</article>" +
+                        "<div class=\"clear\" style=\"clear:both;\"></div>" +
+                        "</section>";
+                html+=ref_info;
+
+                html+="</div>" +
+                        "</div>" +
                         "</body>";
-//                per_info="";
-//                html+=per_info;
-//                edu_info="";
-//                html+=edu_info;
-//                skill_info="";
-//                html+=skill_info;
-//                exper_info="";
-//                html+=exper_info;
-//                excra_info="";
-//                html+=excra_info;
-//                ref_info="";
-//                html+=ref_info;
-
-
 
                 break;
             case 2:
@@ -414,13 +617,11 @@ public class ItemActivity extends AppCompatActivity {
                         "</body>";
                 break;
             case 3:
-                html="<body>" +
-                        "<h1>Template4</h1>" +
-                        "</body>";
+                html="";
                 break;
             case 4:
                 html="<body>" +
-                        "<h1>Template5</h1>" +
+                        "<h1>Template4</h1>" +
                         "</body>";
                 break;
         }
