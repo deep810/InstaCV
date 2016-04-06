@@ -12,6 +12,7 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.example.vishwashrisairm.materialdesign.R;
@@ -38,6 +39,7 @@ public class FormSkill extends AppCompatActivity {
     private RecyclerView.LayoutManager skillLayoutManager;
     private List<SkillsInfo> mItems;
     private int item_id;
+    private ImageButton btnback;
 
 
 
@@ -55,6 +57,7 @@ public class FormSkill extends AppCompatActivity {
         mItems=getDataSet();
         skillAdapter=new SkillsRecyclerViewAdapter(mItems);
         skillRecyclerView.setAdapter(skillAdapter);
+        btnback = (ImageButton) findViewById(R.id.btn_back_skill);
 
         //        Swipe Touch Listener
         SwipeableRecyclerViewTouchListener swipeTouchListener =
@@ -163,6 +166,16 @@ public class FormSkill extends AppCompatActivity {
 
                 builder.show();
 
+            }
+        });
+
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FormSkill.this,FormPro.class);
+                intent.putExtra("item_id",item_id);
+                startActivity(intent);
+                finish();
             }
         });
 

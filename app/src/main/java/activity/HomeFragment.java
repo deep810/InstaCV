@@ -35,6 +35,8 @@ import database.ItemStatus;
 
 import helper.PInfoDbHandler;
 
+import static activity.Validation.hasText;
+
 /**
  * Created by vishwashrisairm on 23/2/16.
  */
@@ -148,14 +150,16 @@ public class HomeFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
 
 
-
                         String m_text = input.getText().toString();
-                        PInfoDbHandler db = new PInfoDbHandler(getActivity(),"",null,1);
+
+                        Validation.hasText(input);
+                        PInfoDbHandler db = new PInfoDbHandler(getActivity(), "", null, 1);
                         //ItemStatus s = new ItemStatus(m_text,0,0,0,0,0,0);
 //                        db.addStatus(s);
-                        Intent i = new Intent(getActivity(),FormPersonal.class);
-                        i.putExtra("Title",m_text);
-                       startActivity(i);
+                        if(input.getError()==null){
+                        Intent i = new Intent(getActivity(), FormPersonal.class);
+                        i.putExtra("Title", m_text);
+                        startActivity(i);}
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

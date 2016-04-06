@@ -12,6 +12,7 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.example.vishwashrisairm.materialdesign.R;
@@ -37,7 +38,7 @@ public class FormRef extends AppCompatActivity {
     private RecyclerView.LayoutManager refLayoutManager;
     private List<RefInfo> mItems;
     private int item_id;
-
+    private ImageButton btnback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class FormRef extends AppCompatActivity {
         mItems=getDataSet();
         refAdapter=new RefRecyclerViewAdapter(mItems);
         refRecyclerView.setAdapter(refAdapter);
+        btnback = (ImageButton) findViewById(R.id.btn_back_ref);
 
         //        Swipe Touch Listener
         SwipeableRecyclerViewTouchListener swipeTouchListener =
@@ -162,6 +164,15 @@ public class FormRef extends AppCompatActivity {
 
                 builder.show();
 
+            }
+        });
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FormRef.this,FormExcr.class);
+                intent.putExtra("item_id",item_id);
+                startActivity(intent);
+                finish();
             }
         });
 

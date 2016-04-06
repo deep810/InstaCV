@@ -12,6 +12,7 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.example.vishwashrisairm.materialdesign.R;
@@ -35,6 +36,7 @@ public class FormPro extends AppCompatActivity {
     private RecyclerView.LayoutManager proLayoutManager;
     private List<ProjectInfo> mItems;
     int item_id;
+    private ImageButton btnback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,8 @@ public class FormPro extends AppCompatActivity {
         mItems=getDataSet();
         proAdapter=new ProRecyclerViewAdapter(mItems);
         proRecyclerView.setAdapter(proAdapter);
+
+        btnback = (ImageButton) findViewById(R.id.btn_back_pro);
 
         //        Swipe Touch Listener
         SwipeableRecyclerViewTouchListener swipeTouchListener =
@@ -165,6 +169,18 @@ public class FormPro extends AppCompatActivity {
 
             }
         });
+
+
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FormPro.this,FormEdu.class);
+                intent.putExtra("item_id",item_id);
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
     }
 

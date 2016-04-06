@@ -11,7 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.example.vishwashrisairm.materialdesign.R;
@@ -35,6 +37,7 @@ public class FormEdu extends AppCompatActivity {
     private RecyclerView.LayoutManager eduLayoutManager;
     private List<EduInfo> mItems;
     private int item_id;
+    private ImageButton btnback;
 
 
     @Override
@@ -51,6 +54,9 @@ public class FormEdu extends AppCompatActivity {
         mItems=getDataSet();
         eduAdapter=new EduRecyclerViewAdapter(mItems);
         eduRecyclerView.setAdapter(eduAdapter);
+
+
+        btnback = (ImageButton) findViewById(R.id.btn_back_edu);
 
 //        Swipe Touch Listener
         SwipeableRecyclerViewTouchListener swipeTouchListener =
@@ -163,6 +169,18 @@ public class FormEdu extends AppCompatActivity {
 
             }
         });
+
+
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FormEdu.this,FormPersonal.class);
+                intent.putExtra("item_id",item_id);
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
     }
 
