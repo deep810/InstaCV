@@ -12,6 +12,7 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.example.vishwashrisairm.materialdesign.R;
@@ -34,6 +35,7 @@ public class FormExcr extends AppCompatActivity {
     private RecyclerView.LayoutManager excrLayoutManager;
     private List<CurrInfo> mItems;
     private int item_id;
+    private ImageButton btnback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class FormExcr extends AppCompatActivity {
         mItems=getDataSet();
         excrAdapter=new ExcrRecyclerViewAdapter(mItems);
         excrRecyclerView.setAdapter(excrAdapter);
+        btnback = (ImageButton) findViewById(R.id.btn_back_excr);
 
         //        Swipe Touch Listener
         SwipeableRecyclerViewTouchListener swipeTouchListener =
@@ -150,6 +153,16 @@ public class FormExcr extends AppCompatActivity {
             }
         });
 
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FormExcr.this,FormSkill.class);
+                intent.putExtra("item_id",item_id);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 
     @Override
@@ -172,9 +185,20 @@ public class FormExcr extends AppCompatActivity {
     }
 
     public void submitForm(View view) {
+        PInfoDbHandler db = new PInfoDbHandler(FormExcr.this,"",null,1);
+        if(mItems.size()>0)
+        {
+            db.updateStatusExcr(item_id, 1);
+        }
+        else
+            db.updateStatusExcr(item_id, 0);
+
+        if(db.getCInfoCountbyId(item_id)>0){
         Intent intent = new Intent(this,FormRef.class);
         intent.putExtra("item_id",item_id);
         startActivity(intent);
+        finish();
+        }
 
     }
 

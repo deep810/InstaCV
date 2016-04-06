@@ -11,7 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.example.vishwashrisairm.materialdesign.R;
@@ -35,12 +37,14 @@ public class FormEdu extends AppCompatActivity {
     private RecyclerView.LayoutManager eduLayoutManager;
     private List<EduInfo> mItems;
     private int item_id;
+    private ImageButton btnback;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_edu);
+
 
         item_id=getIntent().getIntExtra("item_id",0);
 
@@ -51,6 +55,9 @@ public class FormEdu extends AppCompatActivity {
         mItems=getDataSet();
         eduAdapter=new EduRecyclerViewAdapter(mItems);
         eduRecyclerView.setAdapter(eduAdapter);
+
+
+        btnback = (ImageButton) findViewById(R.id.btn_back_edu);
 
 //        Swipe Touch Listener
         SwipeableRecyclerViewTouchListener swipeTouchListener =
@@ -145,6 +152,8 @@ public class FormEdu extends AppCompatActivity {
                         PInfoDbHandler db = new PInfoDbHandler(FormEdu.this,"",null,1);
                         EduInfo e=new EduInfo(item_id, edu, year, cg, ins);
                         db.addEInfo(e);
+
+
                         Intent i = new Intent(FormEdu.this,FormEdu.class);
                         i.putExtra("item_id",item_id);
                         startActivity(i);
@@ -163,6 +172,18 @@ public class FormEdu extends AppCompatActivity {
 
             }
         });
+
+
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FormEdu.this,FormPersonal.class);
+                intent.putExtra("item_id",item_id);
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
     }
 
@@ -192,10 +213,22 @@ public class FormEdu extends AppCompatActivity {
     }
 
     public void submitForm(View view) {
+        PInfoDbHandler db = new PInfoDbHandler(FormEdu.this,"",null,1);
 
-        Intent intent = new Intent(FormEdu.this,FormPro.class);
-        intent.putExtra("item_id",item_id);
-        startActivity(intent);
+        if(mItems.size()>0)
+        {
+            db.updateStatusEdu(item_id,1);
+        }
+        else
+            db.updateStatusEdu(item_id,0);
 
+        db = new PInfoDbHandler(FormEdu.this,"",null,1);
+        int c = db.getEInfoCountById(item_id);
+        if(c>0) {
+            Intent intent = new Intent(FormEdu.this, FormPro.class);
+            intent.putExtra("item_id", item_id);
+            startActivity(intent);
+            finish();
+        }
     }
 }

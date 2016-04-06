@@ -390,7 +390,19 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         String countQuery = "SELECT  * FROM " + TABLE_EINFO;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
-        cursor.close();
+        //cursor.close();
+
+        // return count
+        return cursor.getCount();
+    }
+
+    // Getting Edu count by id
+
+    public int getEInfoCountById(int id) {
+        String countQuery = "SELECT * FROM " + TABLE_EINFO +" WHERE item_id= "+id;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+       // cursor.close();
 
         // return count
         return cursor.getCount();
@@ -524,6 +536,18 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
         cursor.close();
+
+        // return count
+        return cursor.getCount();
+    }
+
+
+    //Getting content count by id
+    public int getSInfoCountById(int id) {
+        String countQuery = "SELECT  * FROM " + TABLE_SINFO + " WHERE item_id= "+id;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        //cursor.close();
 
         // return count
         return cursor.getCount();
@@ -673,7 +697,19 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         String countQuery = "SELECT  * FROM " + TABLE_PRINFO;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
-        cursor.close();
+        //cursor.close();
+
+        // return count
+        return cursor.getCount();
+    }
+
+    //getting content count by id
+
+    public int getPRInfoCountById(int id) {
+        String countQuery = "SELECT  * FROM " + TABLE_PRINFO + " WHERE item_id = "+id;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        //cursor.close();
 
         // return count
         return cursor.getCount();
@@ -800,7 +836,18 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         String countQuery = "SELECT  * FROM " + TABLE_CINFO;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
-        cursor.close();
+        //cursor.close();
+
+        // return count
+        return cursor.getCount();
+    }
+
+    //getting content count by id
+    public int getCInfoCountbyId(int id) {
+        String countQuery = "SELECT  * FROM " + TABLE_CINFO +" WHERE item_id = "+id;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        //cursor.close();
 
         // return count
         return cursor.getCount();
@@ -940,17 +987,29 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+
     // Getting contacts Count
     public int getRInfoCount() {
         String countQuery = "SELECT  * FROM " + TABLE_RINFO;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
-        cursor.close();
+        //cursor.close();
 
         // return count
         return cursor.getCount();
     }
 
+
+    // Getting contacts Count by id
+    public int getRInfoCountById(int id) {
+        String countQuery = "SELECT  * FROM " + TABLE_RINFO + " WHERE item_id = "+id;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        //cursor.close();
+
+        // return count
+        return cursor.getCount();
+    }
 
 
 //ItemStatus table
@@ -1053,6 +1112,84 @@ public class PInfoDbHandler extends SQLiteOpenHelper {
         return db.update(TABLE_STATUS, values,  "item_id = ?",
                 new String[] { String.valueOf(r.get_item_id()) });
     }
+
+    //
+
+    // Updating info of edu
+    public int updateStatusEdu(int item_id,int edu_s) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("item_id", item_id);
+        values.put("edu_status", edu_s);
+
+
+        // updating row
+        return db.update(TABLE_STATUS, values,  "item_id = ?",
+                new String[] { String.valueOf(item_id) });
+    }
+
+    // Updating info of project_status
+    public int updateStatusPro(int item_id,int pro_s) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("item_id", item_id);
+        values.put("pro_status", pro_s);
+
+
+        // updating row
+        return db.update(TABLE_STATUS, values,  "item_id = ?",
+                new String[] { String.valueOf(item_id) });
+    }
+
+
+    // Updating info of skill_status
+    public int updateStatusSkill(int item_id,int skill_s) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("item_id", item_id);
+        values.put("skill_status", skill_s);
+
+
+        // updating row
+        return db.update(TABLE_STATUS, values,  "item_id = ?",
+                new String[] { String.valueOf(item_id) });
+    }
+
+
+    // Updating info of excr_status
+    public int updateStatusExcr(int item_id,int excr_s) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("item_id", item_id);
+        values.put("excur_status", excr_s);
+
+
+        // updating row
+        return db.update(TABLE_STATUS, values,  "item_id = ?",
+                new String[] { String.valueOf(item_id) });
+    }
+
+
+    // Updating info of skill_status
+    public int updateStatusRef(int item_id,int ref_s) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("item_id", item_id);
+        values.put("ref_status", ref_s);
+
+
+        // updating row
+        return db.update(TABLE_STATUS, values,  "item_id = ?",
+                new String[] { String.valueOf(item_id) });
+    }
+
+
+
 
     // Deleting single info
     public void deleteStatus(ItemStatus r) {

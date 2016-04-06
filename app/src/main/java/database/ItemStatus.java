@@ -22,6 +22,17 @@ public class ItemStatus {
         this._excurstatus=exc;
 
     }
+    public ItemStatus(int id,String title,int ps,int es,int prs,int ss,int ref,int exc){
+        this._item_id=id;
+        this.title=title;
+        this._personalstatus=ps;
+        this._edustatus=es;
+        this._prostatus=ps;
+        this._skillstatus=ss;
+        this._refstatus=ref;
+        this._excurstatus=exc;
+
+    }
 
     public int get_item_id() {
         return _item_id;

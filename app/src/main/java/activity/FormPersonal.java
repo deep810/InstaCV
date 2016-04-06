@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,7 +42,8 @@ public class FormPersonal extends AppCompatActivity {
     private Toolbar toolbar;
     private EditText inputpName, inputaddress, inputdob, inputcontact, inputemail,inputobjective;
     private TextInputLayout inputLayoutpName, inputLayoutaddress, inputLayoutdob, inputLayoutcontact, inputLayoutemail;
-    private Button btnsave,dp;  //Date picker
+    private Button btnsave,dp;//Date picker
+    private ImageButton btnback;
     int year_x,month_x,day_x;
     static final int DIALOG_ID=0;
 
@@ -83,6 +86,8 @@ public class FormPersonal extends AppCompatActivity {
 
         btnsave = (Button) findViewById(R.id.btn_save);
 
+        btnback = (ImageButton) findViewById(R.id.btn_back_per);
+
 
 
 
@@ -102,6 +107,9 @@ public class FormPersonal extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
                 Validation.hasText(inputpName);
+
+                button_active();
+
             }
         });
         inputaddress.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -109,6 +117,9 @@ public class FormPersonal extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
                 Validation.hasText(inputaddress);
+
+                button_active();
+
             }
         });
         inputdob.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -116,29 +127,47 @@ public class FormPersonal extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
                 Validation.hasText(inputdob);
+
+                button_active();
             }
         });
         inputcontact.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                     Validation.isPhoneNumber(inputcontact,true);
+
+               button_active();
             }
         });
         inputemail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
-                Validation.isEmailAddress(inputemail,true);
+                Validation.isEmailAddress(inputemail, true);
+                button_active();
             }
         });
 
-
-
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(FormPersonal.this,MainActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                submitForm();
+                Validation.hasText(inputpName);
+                Validation.hasText(inputaddress);
+                Validation.hasText(inputdob);
+                Validation.isPhoneNumber(inputcontact, true);
+                Validation.isEmailAddress(inputemail, true);
+                button_active();
+                if(btnsave.isEnabled()==true){
+                submitForm();}
             }
         });
     }
@@ -190,6 +219,8 @@ public class FormPersonal extends AppCompatActivity {
 
         ItemStatus i_status=new ItemStatus(title,1,0,0,0,0,0);
         int id = db.addStatus(i_status);
+
+
         Log.d("Insted Item_status: ",String.valueOf(id));
 
 
@@ -204,9 +235,35 @@ public class FormPersonal extends AppCompatActivity {
         db.addPInfo(p);
 
         Intent i = new Intent(this,FormEdu.class);
+
         i.putExtra("item_id",id);
         startActivity(i);
 
+    }
+
+    private void button_active(){
+
+        if(inputpName.getError() != null) {
+            btnsave.setEnabled(false);
+        }
+
+        else if(inputaddress.getError() != null){
+            btnsave.setEnabled(false);
+        }
+
+        else if(inputdob.getError() != null){
+            btnsave.setEnabled(false);
+        }
+
+        else if(inputcontact.getError() != null){
+            btnsave.setEnabled(false);
+        }
+
+        else if(inputemail.getError() != null){
+            btnsave.setEnabled(false);
+        }
+        else
+            btnsave.setEnabled(true);
     }
 
 
