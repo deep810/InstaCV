@@ -147,7 +147,7 @@ public class FormRef extends AppCompatActivity {
                         PInfoDbHandler db = new PInfoDbHandler(FormRef.this,"",null,1);
                         RefInfo e=new RefInfo(item_id, name, contact, position, org);
                         db.addRInfo(e);
-                        Intent i = new Intent(FormRef.this,MainActivity.class);
+                        Intent i = new Intent(FormRef.this,FormRef.class);
                         i.putExtra("item_id",item_id);
                         startActivity(i);
                         finish();
