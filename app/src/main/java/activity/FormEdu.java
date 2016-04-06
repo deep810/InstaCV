@@ -45,6 +45,7 @@ public class FormEdu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_edu);
 
+
         item_id=getIntent().getIntExtra("item_id",0);
 
         eduRecyclerView=(RecyclerView)findViewById(R.id.eduRecyclerView);
@@ -151,6 +152,8 @@ public class FormEdu extends AppCompatActivity {
                         PInfoDbHandler db = new PInfoDbHandler(FormEdu.this,"",null,1);
                         EduInfo e=new EduInfo(item_id, edu, year, cg, ins);
                         db.addEInfo(e);
+
+
                         Intent i = new Intent(FormEdu.this,FormEdu.class);
                         i.putExtra("item_id",item_id);
                         startActivity(i);
@@ -210,10 +213,22 @@ public class FormEdu extends AppCompatActivity {
     }
 
     public void submitForm(View view) {
+        PInfoDbHandler db = new PInfoDbHandler(FormEdu.this,"",null,1);
 
-        Intent intent = new Intent(FormEdu.this,FormPro.class);
-        intent.putExtra("item_id",item_id);
-        startActivity(intent);
+        if(mItems.size()>0)
+        {
+            db.updateStatusEdu(item_id,1);
+        }
+        else
+            db.updateStatusEdu(item_id,0);
 
+        db = new PInfoDbHandler(FormEdu.this,"",null,1);
+        int c = db.getEInfoCountById(item_id);
+        if(c>0) {
+            Intent intent = new Intent(FormEdu.this, FormPro.class);
+            intent.putExtra("item_id", item_id);
+            startActivity(intent);
+            finish();
+        }
     }
 }

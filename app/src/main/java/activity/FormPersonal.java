@@ -219,6 +219,8 @@ public class FormPersonal extends AppCompatActivity {
 
         ItemStatus i_status=new ItemStatus(title,1,0,0,0,0,0);
         int id = db.addStatus(i_status);
+
+
         Log.d("Insted Item_status: ",String.valueOf(id));
 
 
@@ -233,6 +235,7 @@ public class FormPersonal extends AppCompatActivity {
         db.addPInfo(p);
 
         Intent i = new Intent(this,FormEdu.class);
+
         i.putExtra("item_id",id);
         startActivity(i);
 

@@ -185,9 +185,20 @@ public class FormExcr extends AppCompatActivity {
     }
 
     public void submitForm(View view) {
+        PInfoDbHandler db = new PInfoDbHandler(FormExcr.this,"",null,1);
+        if(mItems.size()>0)
+        {
+            db.updateStatusExcr(item_id, 1);
+        }
+        else
+            db.updateStatusExcr(item_id, 0);
+
+        if(db.getCInfoCountbyId(item_id)>0){
         Intent intent = new Intent(this,FormRef.class);
         intent.putExtra("item_id",item_id);
         startActivity(intent);
+        finish();
+        }
 
     }
 

@@ -34,7 +34,7 @@
             android:layout_gravity="right"
             android:id="@+id/btn_back_per"
             android:textSize="12sp"
-            android:src="@drawable/ic_action_search"
+            android:src="@drawable/ic_action_back"
             android:background="@null"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"

@@ -210,8 +210,19 @@ public class FormPro extends AppCompatActivity {
     }
 
     public void submitForm(View view) {
+        PInfoDbHandler db = new PInfoDbHandler(FormPro.this,"",null,1);
+        if(mItems.size()>0)
+        {
+            db.updateStatusPro(item_id, 1);
+        }
+        else
+            db.updateStatusPro(item_id, 0);
+
+        if(db.getPRInfoCountById(item_id)>0){
         Intent intent = new Intent(this,FormSkill.class);
         intent.putExtra("item_id",item_id);
         startActivity(intent);
+        finish();
+        }
     }
 }

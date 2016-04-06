@@ -149,7 +149,7 @@ public class FormRef extends AppCompatActivity {
                         PInfoDbHandler db = new PInfoDbHandler(FormRef.this,"",null,1);
                         RefInfo e=new RefInfo(item_id, name, contact, position, org);
                         db.addRInfo(e);
-                        Intent i = new Intent(FormRef.this,MainActivity.class);
+                        Intent i = new Intent(FormRef.this,FormRef.class);
                         i.putExtra("item_id",item_id);
                         startActivity(i);
                         finish();
@@ -204,10 +204,23 @@ public class FormRef extends AppCompatActivity {
     }
 
     public void submitForm(View view) {
+        PInfoDbHandler db = new PInfoDbHandler(FormRef.this,"",null,1);
 
-        Intent intent = new Intent(FormRef.this,MainActivity.class);
-        intent.putExtra("item_id",item_id);
-        startActivity(intent);
+        if(mItems.size()>0)
+        {
+            db.updateStatusRef(item_id, 1);
+        }
+        else
+        {
+            db.updateStatusRef(item_id, 0);
+        }
+
+        if (db.getRInfoCountById(item_id)>0) {
+            Intent intent = new Intent(FormRef.this,MainActivity.class);
+            intent.putExtra("item_id",item_id);
+            startActivity(intent);
+            finish();
+        }
 
 
     }

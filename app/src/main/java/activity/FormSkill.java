@@ -207,9 +207,21 @@ public class FormSkill extends AppCompatActivity {
     }
 
     public void submitForm(View view) {
+        PInfoDbHandler db = new PInfoDbHandler(FormSkill.this,"",null,1);
+        if(mItems.size()>0)
+        {
+            db.updateStatusSkill(item_id, 1);
+        }
+        else
+            db.updateStatusSkill(item_id, 0);
+
+        if(db.getSInfoCountById(item_id)>0){
+
         Intent intent = new Intent(this,FormExcr.class);
         intent.putExtra("item_id",item_id);
         startActivity(intent);
+        finish();
+        }
 
     }
 }
