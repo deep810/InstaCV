@@ -71,6 +71,7 @@
         ></android.support.v7.widget.RecyclerView>
 
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,6 +86,15 @@
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         ></android.support.v7.widget.RecyclerView>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="e"
+        android:id="@+id/item_edu_button"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal" />
 
 
     <TextView
@@ -102,6 +112,15 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         ></android.support.v7.widget.RecyclerView>
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="e"
+        android:id="@+id/item_pro_button"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -117,6 +136,15 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         ></android.support.v7.widget.RecyclerView>
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="e"
+        android:id="@+id/item_skill_button"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -131,6 +159,15 @@
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" ></android.support.v7.widget.RecyclerView>
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="e"
+        android:id="@+id/item_excra_button"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -144,6 +181,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"></android.support.v7.widget.RecyclerView>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="e"
+        android:id="@+id/item_ref_button"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal" />
 
 
 </LinearLayout>
