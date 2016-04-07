@@ -74,6 +74,17 @@
 
     <!--Personal Information Form ends -->
 
+    <!--AdMob values -->
+
+    <string name="title_activity_second_activiy">Interstitial</string>
+    <string name="msg_welcome">Welcome to Admob. Click on the below button to launch the Interstitial ad.</string>
+    <string name="btn_fullscreen_ad">Show Fullscreen Ad</string>
+
+    <!-- AdMob ad unit IDs -->
+    <string name="banner_home_footer">ca-app-pub-1058873804344007/6235519776</string>
+    <string name="interstitial_full_screen">ca-app-pub-1058873804344007/6235519776</string>
+
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

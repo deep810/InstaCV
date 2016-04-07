@@ -17,6 +17,8 @@ import android.widget.LinearLayout;
 
 import com.example.vishwashrisairm.materialdesign.R;
 import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class FormExcr extends AppCompatActivity {
     private List<CurrInfo> mItems;
     private int item_id;
     private ImageButton btnback;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,11 @@ public class FormExcr extends AppCompatActivity {
         excrAdapter=new ExcrRecyclerViewAdapter(mItems);
         excrRecyclerView.setAdapter(excrAdapter);
         btnback = (ImageButton) findViewById(R.id.btn_back_excr);
+
+//        Ads
+        mAdView = (AdView) findViewById(R.id.adView2);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         //        Swipe Touch Listener
         SwipeableRecyclerViewTouchListener swipeTouchListener =
@@ -175,7 +183,27 @@ public class FormExcr extends AppCompatActivity {
                 Log.i("excr", " Clicked on Item " + position);
             }
         });
+        if (mAdView != null) {
+            mAdView.resume();
+        }
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+
+        if (mAdView != null) {
+            mAdView.pause();
+        }
+        super.onPause();
     }
 
     private List<CurrInfo> getDataSet() {
