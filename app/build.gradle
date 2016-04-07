@@ -41,5 +41,6 @@ dependencies {
     compile 'com.github.brnunes:swipeablerecyclerview:1.0.2'
     compile 'com.itextpdf:itextg:5.5.9'
     compile 'com.itextpdf.tool:xmlworker:5.5.9'
+    compile 'com.google.android.gms:play-services-ads:8.4.0'
 
 }

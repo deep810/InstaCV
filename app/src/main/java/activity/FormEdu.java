@@ -18,6 +18,8 @@ import android.widget.LinearLayout;
 
 import com.example.vishwashrisairm.materialdesign.R;
 import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.text.Normalizer;
 import java.util.List;
@@ -38,6 +40,7 @@ public class FormEdu extends AppCompatActivity {
     private List<EduInfo> mItems;
     private int item_id;
     private ImageButton btnback;
+    private AdView mAdView;
 
 
     @Override
@@ -56,6 +59,10 @@ public class FormEdu extends AppCompatActivity {
         eduAdapter=new EduRecyclerViewAdapter(mItems);
         eduRecyclerView.setAdapter(eduAdapter);
 
+//      Ads
+        AdView mAdView = (AdView) findViewById(R.id.adView1);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         btnback = (ImageButton) findViewById(R.id.btn_back_edu);
 
@@ -198,6 +205,27 @@ public class FormEdu extends AppCompatActivity {
             }
         });
 
+        if (mAdView != null) {
+            mAdView.resume();
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+
+        if (mAdView != null) {
+            mAdView.pause();
+        }
+        super.onPause();
     }
 
     private List<EduInfo> getDataSet() {
