@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+
+
 
 android {
     compileSdkVersion 23
@@ -41,6 +44,7 @@ dependencies {
     compile 'com.github.brnunes:swipeablerecyclerview:1.0.2'
     compile 'com.itextpdf:itextg:5.5.9'
     compile 'com.itextpdf.tool:xmlworker:5.5.9'
-    compile 'com.google.android.gms:play-services-ads:8.4.0'
+    compile 'com.google.android.gms:play-services-ads:8.3.0'
+    compile 'com.google.android.gms:play-services-analytics:8.3.0'
 
 }

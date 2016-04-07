@@ -10,13 +10,16 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.kinvey.android.Client;
-import com.kinvey.android.callback.KinveyUserCallback;
-import com.kinvey.java.User;
+//import com.kinvey.android.callback.KinveyUserCallback;
+//import com.kinvey.java.User;
 
 import com.example.vishwashrisairm.materialdesign.R;
 
@@ -25,16 +28,27 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
     protected Client kinveyClient;
+    private Tracker mTracker;
 
+    private String TAG = "Analytics: ";
+    private String name = "main Activity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        AnalyticsApplication appli = (AnalyticsApplication) getApplication();
+        mTracker = appli.getDefaultTracker();
+
+        Log.i(TAG, "Setting screen name: " + name);
+        mTracker.setScreenName("Image~" + name);
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
+
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
 //        Kinley client init
-        kinveyClient = ((UserLogin) getApplication()).getKinveyService();
+       //kinveyClient = ((UserLogin) getApplication()).getKinveyService();
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -92,13 +106,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 fragment = new AboutFragment();
                 title = getString(R.string.title_About);
                 break;
-            case 3:
-                fragment = new FeedbackFragment();
-                title = getString(R.string.title_Feedback);
-                break;
-            case 4:
-                logout_user();
-                break;
             default:
                 break;
         }
@@ -114,14 +121,14 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         }
     }
 
-    private void logout_user() {
-        try{
-            kinveyClient.user().logout().execute();
-            MainActivity.this.startActivity(new Intent(MainActivity.this, LoginActivity.class));
-            MainActivity.this.finish();
-        }catch(Exception e){
-            System.out.print("error");
-            System.out.print(e);
-        }
-    }
+//    private void logout_user() {
+//        try{
+//            //kinveyClient.user().logout().execute();
+//            MainActivity.this.startActivity(new Intent(MainActivity.this, LoginActivity.class));
+//            MainActivity.this.finish();
+//        }catch(Exception e){
+//            System.out.print("error");
+//            System.out.print(e);
+//        }
+//    }
 }

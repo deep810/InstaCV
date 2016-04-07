@@ -20,8 +20,8 @@
         <!--<item>@string/nav_item_notifications</item>-->
         <item>@string/nav_item_SampleCVs</item>
         <item>@string/nav_item_About</item>
-        <item>@string/nav_item_Feedback</item>
-        <item>@string/nav_item_Logout</item>
+        <!--<item>@string/nav_item_Feedback</item>-->
+        <!--<item>@string/nav_item_Logout</item>-->
     </string-array>
 
     <string name="title_messages">Messages</string>
