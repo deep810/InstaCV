@@ -26,7 +26,7 @@ public class SplashScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        kinveyClient = ((UserLogin) getApplication()).getKinveyService();
+        //kinveyClient = ((UserLogin) getApplication()).getKinveyService();
 
         new Handler().postDelayed(new Runnable() {
 
@@ -40,14 +40,15 @@ public class SplashScreen extends Activity {
                 // This method will be executed once the timer is over
                 // Start your app main activity
 //                System.out.println("Splash Screen"+kinveyClient.user().isUserLoggedIn());
-                if(kinveyClient.user().isUserLoggedIn()){
+                /*if(kinveyClient.user().isUserLoggedIn()){
                     Intent i = new Intent(SplashScreen.this, MainActivity.class);
                     startActivity(i);
                 }else{
                     Intent i = new Intent(SplashScreen.this, LoginActivity.class);
                     startActivity(i);
-                }
-
+                }*/
+                Intent i = new Intent(SplashScreen.this, MainActivity.class);
+                startActivity(i);
 
 
                 // close this activity

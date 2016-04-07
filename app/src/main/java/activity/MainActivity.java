@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
 //        Kinley client init
-        kinveyClient = ((UserLogin) getApplication()).getKinveyService();
+       //kinveyClient = ((UserLogin) getApplication()).getKinveyService();
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -91,13 +91,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             case 2:
                 fragment = new AboutFragment();
                 title = getString(R.string.title_About);
-                break;
-            case 3:
-                fragment = new FeedbackFragment();
-                title = getString(R.string.title_Feedback);
-                break;
-            case 4:
-                logout_user();
                 break;
             default:
                 break;
