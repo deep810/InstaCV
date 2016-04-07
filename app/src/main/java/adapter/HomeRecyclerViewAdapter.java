@@ -17,6 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import activity.EditProfile;
+import activity.FormEdu;
+import activity.FormExcr;
+import activity.FormPro;
+import activity.FormRef;
+import activity.FormSkill;
 import activity.ItemActivity;
 import database.ItemStatus;
 import helper.PInfoDbHandler;
@@ -58,8 +63,34 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
 
                     // Need details of the movie to be sent to the next activity.
 
-                    Intent i = new Intent(v.getContext(), ItemActivity.class);
-                    i.putExtra("item_id",item_id);
+
+                    PInfoDbHandler db = new PInfoDbHandler(v.getContext(), "", null, 1);
+                    ItemStatus i_status = db.getStatus(item_id);
+
+                    if (i_status.get_edustatus() == 0) {
+                        Intent i = new Intent(v.getContext(), FormEdu.class);
+                        i.putExtra("item_id", item_id);
+                        v.getContext().startActivity(i);
+                    } else if (i_status.get_prostatus() == 0) {
+                        Intent i = new Intent(v.getContext(), FormPro.class);
+                        i.putExtra("item_id", item_id);
+                        v.getContext().startActivity(i);
+                    } else if (i_status.get_skillstatus() == 0) {
+                        Intent i = new Intent(v.getContext(), FormSkill.class);
+                        i.putExtra("item_id", item_id);
+                        v.getContext().startActivity(i);
+                    } else if (i_status.get_excurstatus() == 0) {
+                        Intent i = new Intent(v.getContext(), FormExcr.class);
+                        i.putExtra("item_id", item_id);
+                        v.getContext().startActivity(i);
+                    } else if (i_status.get_refstatus() == 0) {
+                        Intent i = new Intent(v.getContext(), FormRef.class);
+                        i.putExtra("item_id", item_id);
+                        v.getContext().startActivity(i);
+                    } else {
+
+                        Intent i = new Intent(v.getContext(), ItemActivity.class);
+                        i.putExtra("item_id", item_id);
                    /* Intent intent = new Intent(context, MovieDetail.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("EXTRA_ART_URL", card.getAlbumArtURL());
@@ -67,7 +98,11 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
                     intent.putExtra("EXTRA_Synopsis", card.getSynopsis());
                     intent.putExtra("EXTRA_Rating", card.getRating());
                     intent.putExtra("EXTRA_ReleaseDate", card.getReleaseDate());*/
-                    v.getContext().startActivity(i);
+                        v.getContext().startActivity(i);
+
+
+                    }
+
 
                     //Toast.makeText(v.getContext(),"Item_ID:"+item_id, Toast.LENGTH_LONG).show();
 
@@ -87,7 +122,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
 //                Toast.makeText(v.getContext(), "Delete: " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
 //            }
 
-            myClickListener.onItemClick(getAdapterPosition(),v);
+            myClickListener.onItemClick(getAdapterPosition(), v);
         }
     }
 
