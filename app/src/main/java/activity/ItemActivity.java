@@ -611,13 +611,261 @@ public class ItemActivity extends AppCompatActivity {
                         "</body>";
 
                 break;
+
             case 2:
+                html="<body>" +
+                        "<style>" +
+                        "body {" +
+                        "border-top: 10px solid #E32636;" +
+                        "margin: 0;" +
+                        "color: #333333;" +
+                        "background-color: #eee;" +
+                        "font-family: 'Open Sans', sans-serif;" +
+                        "}" +
+                        "" +
+                        "hr{" +
+                            "border-color:#E32636;" +
+                        "}"+
+                        "h1, h2, h3, h4 {\n" +
+                        "\t-webkit-margin-before: 0px;\n" +
+                        "\t-webkit-margin-after: 0.5em;\n" +
+                        "\t-webkit-margin-start: 0px;\n" +
+                        "\t-webkit-margin-end: 0px;\n" +
+                        "\t\n" +
+                        "\tborder-bottom: 3px solid #E32636;\n" +
+                        "\tdisplay: inline-block;\n" +
+                        "\tcolor: #333333;\n" +
+                        "\tfont-weight: 600;\n" +
+                        "\ttext-transform: uppercase;\t\t\n" +
+                        "}\n" +
+                        "\n" +
+                        "ul {\n" +
+                        "\t-webkit-margin-before: 0px;\n" +
+                        "\t-webkit-margin-after: 0px;\n" +
+                        "\t-webkit-margin-start: 0px;\n" +
+                        "\t-webkit-margin-end: 0px;\n" +
+                        "\t-webkit-padding-start: 0px;\n" +
+                        "\t\n" +
+                        "\tlist-style: none;\n" +
+                        "}\n" +
+                        "\n" +
+                        ".container {\n" +
+                        "\twidth: 100%;\n" +
+                        "\theight: auto;\n" +
+                        "\n" +
+                        "\tmargin: auto; \n" +
+                        "\tposition: absolute; \n" +
+                        "\ttop: 0; \n" +
+                        "\tleft: 0; \n" +
+                        "\tbottom: 0; \n" +
+                        "\tright: 0;\n" +
+                        "}\n" +
+                        "\n" +
+                        ".row {\n" +
+                        "\tpadding-bottom: 15px;\n" +
+                        "\tpadding-left: 20px;\n" +
+                        "}\n" +
+                        "\n" +
+                        "header {\n" +
+                        "\tdisplay: inline-block;\n" +
+                        "\tmargin-top: 50px;\n" +
+                        "}\n" +
+                        "\n" +
+                        "header h1 {\n" +
+                        "\tfont-size: 40pt;\n" +
+                        "}\n" +
+                        "\n" +
+                        "header ul { \n" +
+                        "\n" +
+                        "}\n" +
+                        "\n" +
+                        "header ul li {\n" +
+                        "\theight: 25px;\n" +
+                        "}\n" +
+                        "\n" +
+                        "header ul li i {\n" +
+                        "\tcolor: #E32636;\n" +
+                        "\tpadding-right: 5px;\n" +
+                        "\tpadding-left: 5px;\n" +
+                        "\tfont-size: 18px;\n" +
+                        "}\n" +
+                        "\n" +
+                        "article {\n" +
+                        "\tmargin-top: 20px;\n" +
+                        "}\n" +
+                        "\n" +
+                        "article h2 {\n" +
+                        "\tfont-size: 20pt;\n" +
+                        "}\n" +
+                        "\n" +
+                        "article .header {\n" +
+                        "\tcolor: #E32636;\n" +
+                        "\tfont-weight: 600;\n" +
+                        "}\n" +
+                        "\n" +
+                        "article .header span {\n" +
+                        "\tfont-size: 10pt;\n" +
+                        "\tfont-style: italic;\n" +
+                        "}\n" +
+                        "\n" +
+                        "article .right{\n" +
+                        "\tfloat: right;\n" +
+                        "\twidth: 10%;\n" +
+                        "\tfont-weight: 600;\n" +
+                        "\t\n" +
+                        "}\n" +
+                        "\n" +
+                        "article .description {\n" +
+                        "\tfont-style: italic;\n" +
+                        "\tfont-size: 9pt;\n" +
+                        "}\n" +
+                        "\n" +
+                        "article .exp-list .fa {\n" +
+                        "\tcolor: #E32636;\n" +
+                        "\tpadding-right: 5px;\n" +
+                        "\tfont-size: 12px;\n" +
+                        "}\n" +
+                        "\n" +
+                        "article ul li {\n" +
+                        "\tmin-height: 25px;\n" +
+                        "\tmax-width: 80%;\n" +
+                        "}\n" +
+                        "\n" +
+                        "article .reference {\n" +
+                        "\twidth: 40%;\n" +
+                        "\tdisplay: inline-block;\n" +
+                        "}\n" +
+                        "\n" +
+                        "article .reference ul li {\n" +
+                        "\tmax-width: 100%;\n" +
+                        "}\n" +
+                        "\n" +
+                        "article .spacer {\n" +
+                        "\theight: 15px;\n" +
+                        "}\n" +
+                        "\n" +
+                        "article .tech ul li {\n" +
+                        "\tmax-width: 100% !important;\n" +
+                        "}\n" +
+                        "\n" +
+                        "article .tech span {\n" +
+                        "\tfont-weight: 600;\n" +
+                        "\tcolor: #E32636;\n" +
+                        "}\n" +
+                        "\t</style>\n";
+                per_info= "<div class=\"container\">\n" +
+                        "<header>\n" +
+                        "<h1 class=\"header\">"+p.get_fullname()+"</h1>\n" +
+                        "<hr/>" +
+                        "<div class=\"row\">\n" +
+                        "<ul>\n" +
+                        "<li class=\"address\"><i class=\"fa fa-home fa-1x\"></i>"+p.get_address()+"</li>\n" +
+                        "<li class=\"phone\">\n" +
+                        "<span><i class=\"fa fa-phone fa-1x\"></i>"+p.get_contact()+"</span>\n" +
+                        "</li>\n" +
+                        "<li class=\"email\"><i class=\"fa fa-envelope fa-1x\"></i>"+p.get_email()+"</li>\n" +
+                        "</ul>\n" +
+                        "</div>\n" +
+                        "</header>\n" +
+                        "<article>\n" +
+                        "<h2 class=\"header\">Objective</h2>\n" +
+                        "<hr/>" +
+                        "<div class=\"row tech\">\n" +
+                        "<p>"+p.get_objective()+"</p>\n" +
+                        "</div>\t\n" +
+                        "</article>\n";
+                html+=per_info;
+
+                skill_info="<article>\n" +
+                        "<h2 class=\"header\">Skills</h2>\n" +
+                        "<hr/>" +
+                        "<div class=\"row tech\">\n" +
+                        "<ul>\n";
+                for(SkillsInfo item:s) {
+                    skill_info += "<li>"+item.get_nameofskill()+"</li>\n";
+                }
+                skill_info+="<li>Php (Interemediate)</li>\n" +
+                        "<li>HTML (Advanced)</li>\t\t\t\n" +
+                        "</ul>\n" +
+                        "</div>\n" +
+                        "</article>\n" ;
+                html+=skill_info;
+
+                edu_info="<article>\n" +
+                        "<h2 class=\"header\">Education</h2>\n" +
+                        "<hr/>" ;
+                for(EduInfo item:edu) {
+                    edu_info += "<div class=\"row\">\n" +
+                            "<ul>\n" +
+                            "<li class=\"right\">\n" +
+                            "<ul>\n" +
+                            "<li>"+item.get_yop()+ "</li>\n" +
+                            "</ul>\n" +
+                            "</li>\n" +
+                            "<li class=\"header\">"+item.get_degree()+"</li>\n" +
+                            "<li>"+item.get_institute()+"</li>\n" +
+                            "<li class=\"description\">"+item.get_cgpa()+"</li>\n" +
+                            "</ul>\n" +
+                            "</div>\n";
+                }
+
+                edu_info+="</article>\n";
+                html+=edu_info;
+
+                exper_info= "<article>\n" +
+                        "<h2 class=\"header\">Experience</h2>\n" +
+                        "<hr/>" ;
+                for(ProjectInfo item:pr) {
+                    exper_info += "<div class=\"row exp-list\">\n" +
+                            "<ul>\n" +
+                            "<li class=\"right\">\n" +
+                            "<ul>\n" +
+                            "<li>Duration</li>\n" +
+                            "</ul>\n" +
+                            "</li>\n" +
+                            "<li class=\"header\">Title, <span>Location</span></li>\n" +
+                            "<li><i class=\"fa fa-caret-right fa-1x\"></i>Designation</li>\n" +
+                            "<li><i class=\"fa fa-caret-right fa-1x\"></i>Description</li>\n" +
+                            "</ul>\n" +
+                            "</div>\n";
+                }
+
+                exper_info+="</article>\n";
+                html+=exper_info;
+
+                excra_info="<article>\n" +
+                        "<h2 class=\"header\">Extracurricular Activities</h2>\n" +
+                        "<hr/>"+
+                        "<div class=\"row tech\">\n" +
+                        "<ul>\n" ;
+                for(CurrInfo item:c) {
+                    excra_info +=
+                            "<li>"+item.get_name()+" </li>\n";
+
+
+                }
+
+                excra_info+="\"</ul>\\n\" +\n" +
+                        "</div>"+"</article>\n" ;
+                html+=excra_info;
+
+                ref_info="<article>\n" +
+                        "<h2 class=\"header\">References</h2>\n" +
+                        "<hr/>";
+                for(RefInfo item:r) {
+                    ref_info += "<div class=\"row header\">"+item.get_rname()+"</div>\n" +
+                            "<div class=\"row\">"+item.get_pos()+", "+item.get_org()+"</div>" +
+                            "<div class=\"row\">"+item.get_contact()+"</div>\n";
+                }
+                ref_info+= "</article>\n" +
+                        "</div>\n" +
+                        "</body>";
+                html+=ref_info;
+                break;
+            case 3:
                 html="<body>" +
                         "<h1>Template3</h1>" +
                         "</body>";
-                break;
-            case 3:
-                html="";
                 break;
             case 4:
                 html="<body>" +
