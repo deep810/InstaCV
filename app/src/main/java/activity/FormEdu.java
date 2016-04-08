@@ -60,8 +60,10 @@ public class FormEdu extends AppCompatActivity {
         eduRecyclerView.setAdapter(eduAdapter);
 
 //      Ads
-        AdView mAdView = (AdView) findViewById(R.id.adView1);
-        AdRequest adRequest = new AdRequest.Builder().build();
+//        7D087F53B0932D81A57D9DF7BF3C0CBA
+        mAdView = (AdView) findViewById(R.id.adView1);
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("7D087F53B0932D81A57D9DF7BF3C0CBA").build();
         mAdView.loadAd(adRequest);
 
         btnback = (ImageButton) findViewById(R.id.btn_back_edu);

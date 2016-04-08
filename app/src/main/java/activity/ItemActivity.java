@@ -24,6 +24,9 @@ import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
 import com.example.vishwashrisairm.materialdesign.R;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -89,6 +92,7 @@ public class ItemActivity extends AppCompatActivity {
     AlertDialog levelDialog;
 
     private int item_id;
+    InterstitialAd mInterstitialAd;
 
 
     //LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -99,6 +103,45 @@ public class ItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_view);
+
+        mInterstitialAd = new InterstitialAd(this);
+
+        // set the ad unit ID
+        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_full_screen));
+
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("7D087F53B0932D81A57D9DF7BF3C0CBA")
+                .build();
+
+        // Load ads into Interstitial Ads
+        mInterstitialAd.loadAd(adRequest);
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            public void onAdLoaded() {
+                showInterstitial();
+            }
+
+            @Override
+            public void onAdClosed() {
+                Toast.makeText(getApplicationContext(), "Ad is closed!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                Toast.makeText(getApplicationContext(), "Ad failed to load! error code: " + errorCode, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                Toast.makeText(getApplicationContext(), "Ad left application!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdOpened() {
+                Toast.makeText(getApplicationContext(), "Ad is opened!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         item_id=getIntent().getIntExtra("item_id",0);
 
@@ -335,6 +378,12 @@ public class ItemActivity extends AppCompatActivity {
         refItemRecyclerView.setAdapter(refItemAdapter);
 
 
+    }
+
+    private void showInterstitial() {
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
     }
 
 
