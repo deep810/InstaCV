@@ -894,7 +894,7 @@ public class ItemActivity extends AppCompatActivity {
 
                 }
 
-                excra_info+="\"</ul>\\n\" +\n" +
+                excra_info+="\"</ul>\" +\n" +
                         "</div>"+"</article>\n" ;
                 html+=excra_info;
 
@@ -958,9 +958,9 @@ public class ItemActivity extends AppCompatActivity {
                         }
                 html+=    "    \n" +
                         "    <!--Skill Info-->\n" +
-                        "    <h3>\n" +
-                        "        <center>SKILLS</center>\n" +
-                        "      </h3>\n" +
+                        "    <h3 style=\"text-align:center;\">\n" +
+                        "      Skills\n" +
+                        "    </h3>\n" +
                         "      <div style=\" position:absolute;left:10%;\">\n" +
                         "        <ul>\n";
                         for(SkillsInfo item:s) {
@@ -973,9 +973,9 @@ public class ItemActivity extends AppCompatActivity {
                         "\n" +
                         "       <br></br><br></br>\n" +
                         "       <!--ExtraCurricular Info-->\n" +
-                        "       <h3>\n" +
-                        "        <center>Extracurricular Activities</center>\n" +
-                        "      </h3>\n" +
+                        "    <h3 style=\"text-align:center;\">\n" +
+                        "      Extra Curriculars\n" +
+                        "    </h3>\n" +
                         "      <div style=\" position:absolute;left:10%;\">\n" +
                         "        <ul>\n";
 
@@ -987,9 +987,9 @@ public class ItemActivity extends AppCompatActivity {
                         "      \n" +
                         "       <br></br><br></br>\n" +
                         "       <!--Reference Info-->\n" +
-                        "       <h3>\n" +
-                        "        <center>Reference</center>\n" +
-                        "      </h3>\n";
+                        "    <h3 style=\"text-align:center;\">\n" +
+                        "      Reference\n" +
+                        "    </h3>\n" ;
                         for(RefInfo item:r) {
                             html += "    <div class='entry'>\n" +
                                     "        <h4 style=\"text-align:left;position:absolute;left:10%;margin-right:10%;\">"+item.get_rname()+

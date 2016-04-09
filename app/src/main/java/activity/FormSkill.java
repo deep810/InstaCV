@@ -17,6 +17,8 @@ import android.widget.LinearLayout;
 
 import com.example.vishwashrisairm.materialdesign.R;
 import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.text.Normalizer;
 import java.util.List;
@@ -40,6 +42,7 @@ public class FormSkill extends AppCompatActivity {
     private List<SkillsInfo> mItems;
     private int item_id;
     private ImageButton btnback;
+    private AdView mAdView;
 
 
 
@@ -58,6 +61,12 @@ public class FormSkill extends AppCompatActivity {
         skillAdapter=new SkillsRecyclerViewAdapter(mItems);
         skillRecyclerView.setAdapter(skillAdapter);
         btnback = (ImageButton) findViewById(R.id.btn_back_skill);
+
+        //        Ads
+        mAdView = (AdView) findViewById(R.id.adView2);
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("7D087F53B0932D81A57D9DF7BF3C0CBA").build();
+        mAdView.loadAd(adRequest);
 
         //        Swipe Touch Listener
         SwipeableRecyclerViewTouchListener swipeTouchListener =

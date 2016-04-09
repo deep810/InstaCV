@@ -197,7 +197,7 @@ public class FormPersonal extends AppCompatActivity {
             year_x=year;
             month_x=monthOfYear+1;
             day_x=dayOfMonth;
-            inputdob.setText(dayOfMonth+"/"+monthOfYear+"/"+year);
+            inputdob.setText(dayOfMonth+"/"+(monthOfYear+1)+"/"+year);
         }
 
 
