@@ -21,25 +21,26 @@
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
 
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textColor="@color/cardview_light_background"
-            android:text="Personal"
-            android:textSize="18sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PERSONAL INFORMATION"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#ffffff"/>
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:id="@+id/btn_back_per"
-            android:textSize="12sp"
-            android:src="@drawable/ic_action_back"
-            android:background="@null"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:textColor="#FFF"
-            android:text="Preview"/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:id="@+id/btn_back_per"
+                android:textSize="12sp"
+                android:src="@drawable/ic_action_back"
+                android:background="@null"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:textColor="#FFF"
+                android:text="Preview"/>
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
@@ -93,22 +94,22 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:orientation="horizontal" >
-            <EditText
-                android:id="@+id/input_dob"
-                android:layout_width="236dp"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:hint="@string/hint_dob" />
+                <EditText
+                    android:id="@+id/input_dob"
+                    android:layout_width="236dp"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:hint="@string/hint_dob" />
 
-            <Button
-                android:id="@+id/dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="0dp"
-                android:text="d"
-                android:layout_gravity="right" />
+                <Button
+                    android:id="@+id/dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="0dp"
+                    android:text="d"
+                    android:layout_gravity="right" />
             </LinearLayout>
 
 

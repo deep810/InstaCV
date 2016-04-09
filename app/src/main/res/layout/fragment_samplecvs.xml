@@ -7,74 +7,46 @@
     tools:context="info.androidhive.materialdesign.activity.HomeFragment">
 
 
-    <!--<TextView-->
-        <!--android:id="@+id/label"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_marginTop="100dp"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:gravity="center_horizontal"-->
-        <!--android:textSize="45dp"-->
-        <!--android:text="Sample CVs"-->
-        <!--android:textStyle="bold"/>-->
 
-    <!--<TextView-->
-        <!--android:layout_below="@id/label"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:textSize="12dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:gravity="center_horizontal"-->
-        <!--android:text="Edit fragment_samples.xml to change the appearance" />-->
 
-    <Button
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Template1"
-        android:id="@+id/test1"
-        android:layout_marginTop="51dp"
+        android:layout_marginLeft="25dp"
+        android:id="@+id/imageView1"
+        android:src="@drawable/sample"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Template2"
-        android:id="@+id/test2"
-        android:layout_marginTop="34dp"
-        android:layout_below="@+id/test1"
-        android:layout_alignLeft="@+id/test1"
-        android:layout_alignStart="@+id/test1" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Template3"
-        android:id="@+id/test3"
-        android:layout_below="@+id/test2"
-        android:layout_alignLeft="@+id/test2"
-        android:layout_alignStart="@+id/test2"
-        android:layout_marginTop="39dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Template4"
-        android:id="@+id/test4"
-        android:layout_below="@+id/test3"
-        android:layout_alignLeft="@+id/test3"
-        android:layout_alignStart="@+id/test3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_marginTop="45dp" />
 
-    <Button
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Generate PDF"
-        android:id="@+id/test5"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="71dp" />
+        android:id="@+id/imageView2"
+        android:src="@drawable/sample"
+        android:layout_marginRight="25dp"
+        android:layout_alignTop="@+id/imageView1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView3"
+        android:src="@drawable/sample"
+        android:layout_below="@+id/imageView1"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_alignStart="@+id/imageView1" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView4"
+        android:src="@drawable/sample"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignLeft="@+id/imageView2"
+        android:layout_alignStart="@+id/imageView2" />
 
 </RelativeLayout>

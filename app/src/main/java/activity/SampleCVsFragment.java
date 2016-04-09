@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.app.Fragment;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.vishwashrisairm.materialdesign.R;
@@ -52,7 +53,7 @@ import helper.PInfoDbHandler;
  */
 public class SampleCVsFragment extends Fragment {
 
-//    for testting pdf generation
+    //    for testting pdf generation
     public static final String DEST = "assets/html_1.pdf";
 
 //    till here
@@ -72,7 +73,7 @@ public class SampleCVsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_samplecvs, container, false);
 
-        Button btn1=(Button)rootView.findViewById(R.id.test1);
+        ImageView btn1=(ImageView)rootView.findViewById(R.id.imageView1);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +82,7 @@ public class SampleCVsFragment extends Fragment {
             }
         });
 
-        Button btn2=(Button)rootView.findViewById(R.id.test2);
+        ImageView btn2=(ImageView)rootView.findViewById(R.id.imageView2);
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +91,7 @@ public class SampleCVsFragment extends Fragment {
             }
         });
 
-        Button btn3=(Button)rootView.findViewById(R.id.test3);
+        ImageView btn3=(ImageView)rootView.findViewById(R.id.imageView3);
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,7 +100,7 @@ public class SampleCVsFragment extends Fragment {
             }
         });
 
-        Button btn4=(Button)rootView.findViewById(R.id.test4);
+        ImageView btn4=(ImageView)rootView.findViewById(R.id.imageView4);
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,39 +109,7 @@ public class SampleCVsFragment extends Fragment {
             }
         });
 
-        Button btn5=(Button)rootView.findViewById(R.id.test5);
-        btn5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String path =Environment.getExternalStorageDirectory().toString()+"/test.pdf";
-                File file = new File(path);
-                file.getParentFile().mkdirs();
-                try {
-                    createPdf(path);
-                    File pdfFile = new File(path);//File path
-                    if (pdfFile.exists()) //Checking for the file is exist or not
-                    {
-                        Uri path1 = Uri.fromFile(pdfFile);
-                        Intent objIntent = new Intent(Intent.ACTION_VIEW);
-                        objIntent.setDataAndType(path1, "application/pdf");
-                        objIntent.setFlags(Intent. FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(objIntent);//Staring the pdf viewer
-                    } else {
 
-                        Toast.makeText(getActivity(), "The file not exists! ", Toast.LENGTH_SHORT).show();
-
-                    }
-
-
-//                    CopyReadAssets(5);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (DocumentException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
 
         // Inflate the layout for this fragment
         return rootView;
@@ -271,15 +240,15 @@ public class SampleCVsFragment extends Fragment {
                 "<th>Percentage</th>" +
                 "<th>Institute</th>" +
                 "</tr>" ;
-                for(EduInfo item:edu) {
-                    edu_info += "<tr>" +
-                            "<td>"+item.get_degree()+"</td>" +
-                            "<td>"+item.get_yop()+"</td>" +
-                            "<td>"+item.get_cgpa()+"</td>" +
-                            "<td>"+item.get_institute()+"</td>" +
-                            "</tr>";
-                }
-               edu_info+= "</table>" +
+        for(EduInfo item:edu) {
+            edu_info += "<tr>" +
+                    "<td>"+item.get_degree()+"</td>" +
+                    "<td>"+item.get_yop()+"</td>" +
+                    "<td>"+item.get_cgpa()+"</td>" +
+                    "<td>"+item.get_institute()+"</td>" +
+                    "</tr>";
+        }
+        edu_info+= "</table>" +
                 "</div>";
 
         html+=edu_info;

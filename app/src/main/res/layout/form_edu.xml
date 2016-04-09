@@ -23,25 +23,26 @@
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
 
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textColor="@color/cardview_light_background"
-            android:text="Education"
-            android:textSize="18sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EDUCATION AND QUALIFICATION"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#ffffff"/>
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:id="@+id/btn_back_edu"
-            android:textSize="12sp"
-            android:src="@drawable/ic_action_back"
-            android:background="@null"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:textColor="#FFF"
-            android:text="Preview"/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:id="@+id/btn_back_edu"
+                android:textSize="12sp"
+                android:src="@drawable/ic_action_back"
+                android:background="@null"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:textColor="#FFF"
+                android:text="Preview"/>
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
