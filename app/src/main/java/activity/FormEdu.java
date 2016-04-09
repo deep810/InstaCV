@@ -119,7 +119,7 @@ public class FormEdu extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(FormEdu.this);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(FormEdu.this);
                 builder.setTitle("Education Information");
 
                 // Set up the input
@@ -157,6 +157,13 @@ public class FormEdu extends AppCompatActivity {
                         String cg = cgpa.getText().toString();
                         String ins = institute.getText().toString();
 
+                        Validation.hasText(edu_name);
+                        Validation.hasText(yop);
+                        Validation.hasText(cgpa);
+                        Validation.hasText(institute);
+
+                        if(edu_name.getError()==null && yop.getError()==null && cgpa.getError()==null && institute.getError()==null){
+
 
                         PInfoDbHandler db = new PInfoDbHandler(FormEdu.this,"",null,1);
                         EduInfo e=new EduInfo(item_id, edu, year, cg, ins);
@@ -166,7 +173,11 @@ public class FormEdu extends AppCompatActivity {
                         Intent i = new Intent(FormEdu.this,FormEdu.class);
                         i.putExtra("item_id",item_id);
                         startActivity(i);
-                        finish();
+                        finish();}
+                        else{
+
+
+                        }
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
