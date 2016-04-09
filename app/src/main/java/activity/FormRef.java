@@ -59,7 +59,10 @@ public class FormRef extends AppCompatActivity {
         refRecyclerView.setAdapter(refAdapter);
         btnback = (ImageButton) findViewById(R.id.btn_back_ref);
 
-
+        mAdView = (AdView) findViewById(R.id.adView3);
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("7D087F53B0932D81A57D9DF7BF3C0CBA").build();
+        mAdView.loadAd(adRequest);
 
         //        Swipe Touch Listener
         SwipeableRecyclerViewTouchListener swipeTouchListener =

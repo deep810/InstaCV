@@ -54,13 +54,7 @@
         android:layout_weight="1"
         android:scrollbars="vertical"></android.support.v7.widget.RecyclerView>
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_home_footer">
-    </com.google.android.gms.ads.AdView>
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_excr"
