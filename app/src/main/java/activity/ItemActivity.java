@@ -912,9 +912,97 @@ public class ItemActivity extends AppCompatActivity {
                 html+=ref_info;
                 break;
             case 3:
-                html="<body>" +
-                        "<h1>Template3</h1>" +
-                        "</body>";
+                html="<body>\n" +
+                        "  <div>\n" +
+                        "    <div style=\"width: 100%;height: 90px;color: #ecf0f1;background: #3498db;text-align:center;position:absolute;top:0px;left:0px;margin:0px;padding:0px;border-top-left-radius:5px;border-top-right-radius:5px;\">\n" +
+                        "      <!--Personal Info-->\n" +
+                        "      <h1>"+p.get_fullname()+"</h1>\n" +
+                        "    </div>\n" +
+                        "    <div style=\" margin-top:100px;\">\n" +
+                        "      <p style=\"text-align:center;\">"+p.get_address()+"<br/> "+p.get_contact()+"\n" +
+                        "  - "+p.get_email()+"</p>\n" +
+                        "      <hr style=\"width:90%;border: 1px solid #3498db;\"/><br/>\n" +
+                        "      <span style=\"text-align:left;position:absolute;left:10%;margin-right:10%;\">\n" +
+                        "     "+p.get_objective()+"   \n" +
+                        "      </span>\n" +
+                        "      \n" +
+                        "      <!--Education Info-->\n" +
+                        "      <br></br><br></br><br></br>\n" +
+                        "        <h3 style=\"text-align:center;\">\n" +
+                        "        ACADEMICS\n" +
+                        "      </h3>\n";
+                        for(EduInfo item:edu) {
+                            html += "      <div>\n" +
+                                    "        <h4 style=\"text-align:left;position:absolute;left:10%;margin-right:10%;\">"+item.get_degree()+"– "+item.get_institute()+"</h4>\n" +
+                                    "        <h4 style=\"text-align:right;position:absolute;right:10%;\">"+item.get_yop()+"</h4><br></br>\n" +
+                                    "        <p style=\"text-align:left;position:absolute;left:10%;margin-right:10%;\">"+item.get_cgpa()+"</p>\n" +
+                                    "        <br></br>\n" +
+                                    "        \n" +
+                                    "      </div>  \n";
+                        }
+                html+=        "    </div>\n" +
+                        "    <!--Experience Info-->\n" +
+                        "    <h3 style=\"text-align:center;\">\n" +
+                        "      Experience\n" +
+                        "    </h3>\n" ;
+                        for(ProjectInfo item:pr) {
+                            html += "    <div class='entry'>\n" +
+                                    "        <h4 style=\"text-align:left;position:absolute;left:10%;margin-right:10%;\">"+item.get_title()+"</h4>\n" +
+                                    "        <h4 style=\"text-align:right;position:absolute;right:10%;\">- "+item.get_time()+"-</h4>\n" +
+                                    "        <br></br>\n" +
+                                    "        <ul>\n" +
+                                    "          <li style=\"position:relative;left:8%;\">"+item.get_desig()+"</li>\n" +
+                                    "          <li style=\"position:relative;left:8%;\">"+item.get_desc()+"</li>\n" +
+                                    "        </ul>\n" +
+                                    "    </div>\n";
+                        }
+                html+=    "    \n" +
+                        "    <!--Skill Info-->\n" +
+                        "    <h3>\n" +
+                        "        <center>SKILLS</center>\n" +
+                        "      </h3>\n" +
+                        "      <div style=\" position:absolute;left:10%;\">\n" +
+                        "        <ul>\n";
+                        for(SkillsInfo item:s) {
+                            html += "<li>"+item.get_nameofskill()+"</li>\n";
+                        }
+                html+= "  " +
+                        "        </ul>\n" +
+                        "      </div>\n" +
+                        "      \n" +
+                        "\n" +
+                        "       <br></br><br></br>\n" +
+                        "       <!--ExtraCurricular Info-->\n" +
+                        "       <h3>\n" +
+                        "        <center>Extracurricular Activities</center>\n" +
+                        "      </h3>\n" +
+                        "      <div style=\" position:absolute;left:10%;\">\n" +
+                        "        <ul>\n";
+
+                        for(CurrInfo item:c) {
+                            html += "<li>"+item.get_name()+"</li>\n";
+                        }
+                html+=  "        </ul>\n" +
+                        "      </div>\n" +
+                        "      \n" +
+                        "       <br></br><br></br>\n" +
+                        "       <!--Reference Info-->\n" +
+                        "       <h3>\n" +
+                        "        <center>Reference</center>\n" +
+                        "      </h3>\n";
+                        for(RefInfo item:r) {
+                            html += "    <div class='entry'>\n" +
+                                    "        <h4 style=\"text-align:left;position:absolute;left:10%;margin-right:10%;\">"+item.get_rname()+
+                            "</h4>\n" +
+                                    "        <br></br>\n" +
+                                    "        <ul>\n" +
+                                    "          <li style=\"position:relative;left:8%;\">"+item.get_pos()+","+item.get_org()+"</li>\n" +
+                                    "          <li style=\"position:relative;left:8%;\">Contact:"+item.get_contact()+"</li>\n" +
+                                    "        </ul>\n" +
+                                    "    </div>";
+                        }
+                html+=  "  </div>\n" +
+                        "  </body>";
                 break;
             case 4:
                 html="<body>" +
