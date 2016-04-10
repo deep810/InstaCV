@@ -36,17 +36,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView3"
         android:src="@drawable/sample"
-        android:layout_below="@+id/imageView1"
         android:layout_alignLeft="@+id/imageView1"
-        android:layout_alignStart="@+id/imageView1" />
+        android:layout_alignStart="@+id/imageView1"
+        android:layout_alignTop="@+id/imageView4" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView4"
         android:src="@drawable/sample"
-        android:layout_below="@+id/imageView2"
+        android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/imageView2"
-        android:layout_alignStart="@+id/imageView2" />
+        android:layout_alignStart="@+id/imageView2"
+        android:layout_marginBottom="126dp" />
 
 </RelativeLayout>

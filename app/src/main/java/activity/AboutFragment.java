@@ -37,13 +37,22 @@ public class AboutFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent myWebLink = new Intent(android.content.Intent.ACTION_VIEW);
-                myWebLink.setData(Uri.parse("https://www.facebook.com/?_rdr"));
+                myWebLink.setData(Uri.parse("https://www.facebook.com/teaminstacv/"));
                 startActivity(myWebLink);
             }
         });
 
 
         btn = (ImageView) rootView.findViewById(R.id.imageView2);
+        btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent myWebLink = new Intent(android.content.Intent.ACTION_VIEW);
+                myWebLink.setData(Uri.parse("https://twitter.com/InstaCv"));
+                startActivity(myWebLink);
+            }
+        });
+
+        btn = (ImageView) rootView.findViewById(R.id.imageView3);
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent myWebLink = new Intent(android.content.Intent.ACTION_VIEW);
