@@ -12,10 +12,10 @@
         android:id="@+id/ref_card_view"
         android:layout_gravity="center"
         android:layout_width="fill_parent"
-        android:layout_height="200dp"
+        android:layout_height="170dp"
         android:layout_margin="5dp"
         card_view:cardCornerRadius="2dp"
-        card_view:contentPadding="10dp">
+        >
 
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -28,11 +28,12 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:layout_gravity="center"
+                android:textColor="@color/colorPrimary"
                 android:textSize="28dp"
                 android:text="Name"
+                android:layout_centerHorizontal="true"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                />
 
 
 
@@ -40,11 +41,13 @@
                 android:id="@+id/ref_card_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
                 android:text="contact"
                 android:textSize="22dp"
-                android:paddingTop="5dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
+                android:paddingTop="1dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentStart="false"
                 android:layout_below="@+id/ref_card_1" />
 
 
@@ -55,9 +58,9 @@
                 android:text="position"
                 android:textSize="22dp"
                 android:paddingTop="5dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_below="@+id/ref_card_2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp" />
 
 
             <TextView
@@ -67,31 +70,33 @@
                 android:text="organisation"
                 android:textSize="22dp"
                 android:paddingTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_below="@+id/ref_card_3"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentLeft="false"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentStart="false" />
 
 
             <!--<Button-->
-                <!--style="?android:attr/buttonStyleSmall"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="E"-->
-                <!--android:id="@+id/eeb"-->
-                <!--android:layout_alignParentBottom="true"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:layout_alignParentEnd="true" />-->
+            <!--style="?android:attr/buttonStyleSmall"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="E"-->
+            <!--android:id="@+id/eeb"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_alignParentEnd="true" />-->
 
             <!--<Button-->
-                <!--style="?android:attr/buttonStyleSmall"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="D"-->
-                <!--android:id="@+id/edb"-->
-                <!--android:layout_alignParentBottom="true"-->
-                <!--android:layout_toLeftOf="@+id/eeb"-->
-                <!--android:layout_toStartOf="@+id/eeb" />-->
+            <!--style="?android:attr/buttonStyleSmall"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="D"-->
+            <!--android:id="@+id/edb"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_toLeftOf="@+id/eeb"-->
+            <!--android:layout_toStartOf="@+id/eeb" />-->
 
 
         </RelativeLayout>

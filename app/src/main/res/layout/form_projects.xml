@@ -21,11 +21,12 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
 
             <TextView
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textColor="@color/cardview_light_background"
-                android:text="Projects"
-                android:textSize="18sp"/>
+                android:layout_height="wrap_content"
+                android:text="PROJECTS AND EXPERIENCES"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#ffffff"/>
 
             <ImageButton
                 android:layout_width="wrap_content"
