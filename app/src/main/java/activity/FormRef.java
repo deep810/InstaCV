@@ -1,5 +1,6 @@
 package activity;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +12,12 @@ import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.example.vishwashrisairm.materialdesign.R;
 import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListener;
@@ -119,29 +123,50 @@ public class FormRef extends AppCompatActivity {
                 builder.setTitle("References");
 
                 // Set up the input
+                final TextView ref_name_label=new TextView(FormRef.this);
                 final EditText ref_name = new EditText(FormRef.this);
+                final TextView ref_contact_label=new TextView(FormRef.this);
                 final EditText  ref_contact= new EditText(FormRef.this);
+                final TextView ref_position_label=new TextView(FormRef.this);
                 final EditText ref_position = new EditText(FormRef.this);
+                final TextView ref_org_label=new TextView(FormRef.this);
                 final EditText ref_org = new EditText(FormRef.this);
                 // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                ref_name_label.setText("Name:");
+                ref_name_label.setTextSize(20);
+                ref_name_label.setTextColor(getResources().getColor(R.color.colorPrimary));
                 ref_name.setInputType(InputType.TYPE_CLASS_TEXT);
-                ref_name.setHint("Name");
+
+                ref_contact_label.setText("Contact:");
+                ref_contact_label.setTextSize(20);
+                ref_contact_label.setTextColor(getResources().getColor(R.color.colorPrimary));
                 ref_contact.setInputType(InputType.TYPE_CLASS_TEXT);
-                ref_contact.setHint("Contact");
+
+                ref_position_label.setText("Position:");
+                ref_position_label.setTextSize(20);
+                ref_position_label.setTextColor(getResources().getColor(R.color.colorPrimary));
                 ref_position.setInputType(InputType.TYPE_CLASS_TEXT);
-                ref_position.setHint("position");
+
+                ref_org_label.setText("Organisation:");
+                ref_org_label.setTextSize(20);
+                ref_org_label.setTextColor(getResources().getColor(R.color.colorPrimary));
                 ref_org.setInputType(InputType.TYPE_CLASS_TEXT);
-                ref_org.setHint("Organisation");
+
 
                 LinearLayout ll=new LinearLayout(FormRef.this);
                 ll.setOrientation(LinearLayout.VERTICAL);
+                ll.addView(ref_name_label);
                 ll.addView(ref_name);
+                ll.addView(ref_contact_label);
                 ll.addView(ref_contact);
+                ll.addView(ref_position_label);
                 ll.addView(ref_position);
+                ll.addView(ref_org_label);
                 ll.addView(ref_org);
 
-
-                builder.setView(ll);
+                ScrollView s=new ScrollView(FormRef.this);
+                s.addView(ll);
+                builder.setView(s);
 
                 // Set up the buttons
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -170,8 +195,15 @@ public class FormRef extends AppCompatActivity {
                     }
                 });
 
-                builder.show();
-
+//                builder.show();
+                Dialog d = builder.setView(ll).create();
+                d.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                lp.copyFrom(d.getWindow().getAttributes());
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = WindowManager.LayoutParams.MATCH_PARENT;  // or try WRAP_CONTENT
+                d.show();
+                d.getWindow().setAttributes(lp);
             }
         });
         btnback.setOnClickListener(new View.OnClickListener() {

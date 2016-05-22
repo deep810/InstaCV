@@ -1,5 +1,6 @@
 package activity;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +12,12 @@ import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.example.vishwashrisairm.materialdesign.R;
 import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListener;
@@ -109,33 +113,60 @@ public class FormPro extends AppCompatActivity {
                 builder.setTitle("Projects/Experience Information");
 
                 // Set up the input
+                final TextView pro_title_label=new TextView(FormPro.this);
                 final EditText pro_title = new EditText(FormPro.this);
+                final TextView pro_location_label=new TextView(FormPro.this);
                 final EditText  pro_location=new  EditText(FormPro.this);
+                final TextView pro_duration_label=new TextView(FormPro.this);
                 final EditText pro_duration = new EditText(FormPro.this);
+                final TextView pro_designation_label=new TextView(FormPro.this);
                 final EditText pro_designation = new EditText(FormPro.this);
+                final TextView pro_description_label=new TextView(FormPro.this);
                 final EditText pro_description = new EditText(FormPro.this);
+
                 // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                pro_title_label.setText("Title:");
+                pro_title_label.setTextSize(20);
+                pro_title_label.setTextColor(getResources().getColor(R.color.colorPrimary));
                 pro_title.setInputType(InputType.TYPE_CLASS_TEXT);
-                pro_title.setHint("Title");
+
+                pro_location_label.setText("Location:");
+                pro_location_label.setTextSize(20);
+                pro_location_label.setTextColor(getResources().getColor(R.color.colorPrimary));
                 pro_location.setInputType(InputType.TYPE_CLASS_TEXT);
-                pro_location.setHint("Location");
+
+                pro_duration_label.setText("Duration:");
+                pro_duration_label.setTextSize(20);
+                pro_duration_label.setTextColor(getResources().getColor(R.color.colorPrimary));
                 pro_duration.setInputType(InputType.TYPE_CLASS_TEXT);
-                pro_duration.setHint("Duration");
+
+                pro_designation_label.setText("Designation:");
+                pro_designation_label.setTextSize(20);
+                pro_designation_label.setTextColor(getResources().getColor(R.color.colorPrimary));
                 pro_designation.setInputType(InputType.TYPE_CLASS_TEXT);
-                pro_designation.setHint("Designation");
+
+                pro_description_label.setText("Description:");
+                pro_description_label.setTextSize(20);
+                pro_description_label.setTextColor(getResources().getColor(R.color.colorPrimary));
                 pro_description.setInputType(InputType.TYPE_CLASS_TEXT);
-                pro_description.setHint("Description");
+
 
                 LinearLayout ll=new LinearLayout(FormPro.this);
                 ll.setOrientation(LinearLayout.VERTICAL);
+                ll.addView(pro_title_label);
                 ll.addView(pro_title);
+                ll.addView(pro_location_label);
                 ll.addView(pro_location);
+                ll.addView(pro_duration_label);
                 ll.addView(pro_duration);
+                ll.addView(pro_designation_label);
                 ll.addView(pro_designation);
+                ll.addView(pro_description_label);
                 ll.addView(pro_description);
 
-
-                builder.setView(ll);
+                ScrollView s=new ScrollView(FormPro.this);
+                s.addView(ll);
+                builder.setView(s);
 
                 // Set up the buttons
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -165,8 +196,16 @@ public class FormPro extends AppCompatActivity {
                     }
                 });
 
-                builder.show();
+//                builder.show();
 
+                Dialog d = builder.setView(ll).create();
+                d.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                lp.copyFrom(d.getWindow().getAttributes());
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = WindowManager.LayoutParams.MATCH_PARENT;  // or try WRAP_CONTENT
+                d.show();
+                d.getWindow().setAttributes(lp);
             }
         });
 

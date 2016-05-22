@@ -1,5 +1,6 @@
 package activity;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +12,11 @@ import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.vishwashrisairm.materialdesign.R;
 import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListener;
@@ -115,14 +118,20 @@ public class FormExcr extends AppCompatActivity {
                 builder.setTitle("ExtraCurricular Activities");
 
                 // Set up the input
+                final TextView excra_label=new TextView(FormExcr.this);
+
                 final EditText excra = new EditText(FormExcr.this);
                 // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                excra_label.setText("Extracurriular Activity:");
+                excra_label.setTextSize(20);
+                excra_label.setTextColor(getResources().getColor(R.color.colorPrimary));
                 excra.setInputType(InputType.TYPE_CLASS_TEXT);
-                excra.setHint("Activity");
+
 
 
                 LinearLayout ll=new LinearLayout(FormExcr.this);
                 ll.setOrientation(LinearLayout.VERTICAL);
+                ll.addView(excra_label);
                 ll.addView(excra);
 
 
@@ -153,8 +162,16 @@ public class FormExcr extends AppCompatActivity {
                     }
                 });
 
-                builder.show();
+//                builder.show();
 
+                Dialog d = builder.setView(ll).create();
+                d.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                lp.copyFrom(d.getWindow().getAttributes());
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = WindowManager.LayoutParams.MATCH_PARENT;  // or try WRAP_CONTENT
+                d.show();
+                d.getWindow().setAttributes(lp);
             }
         });
 

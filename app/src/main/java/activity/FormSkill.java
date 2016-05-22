@@ -1,5 +1,6 @@
 package activity;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +12,11 @@ import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.vishwashrisairm.materialdesign.R;
 import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListener;
@@ -122,13 +125,22 @@ public class FormSkill extends AppCompatActivity {
                 builder.setTitle("Skills Information");
 
                 // Set up the input
+                final TextView skill_name_label=new TextView(FormSkill.this);
                 final EditText skill_name = new EditText(FormSkill.this);
+                final TextView proficiency_label=new TextView(FormSkill.this);
                 final EditText  proficiency= new EditText(FormSkill.this);
               //  final EditText cgpa = new EditText(FormEdu.this);
                // final EditText institute = new EditText(FormEdu.this);
                 // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                skill_name_label.setText("Skill:");
+                skill_name_label.setTextSize(20);
+                skill_name_label.setTextColor(getResources().getColor(R.color.colorPrimary));
                 skill_name.setInputType(InputType.TYPE_CLASS_TEXT);
                 skill_name.setHint("java/php..");
+
+                proficiency_label.setText("Proficiency:");
+                proficiency_label.setTextSize(20);
+                proficiency_label.setTextColor(getResources().getColor(R.color.colorPrimary));
                 proficiency.setInputType(InputType.TYPE_CLASS_TEXT);
                 proficiency.setHint("beginner/advanced");
                 //cgpa.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -138,7 +150,9 @@ public class FormSkill extends AppCompatActivity {
 
                 LinearLayout ll=new LinearLayout(FormSkill.this);
                 ll.setOrientation(LinearLayout.VERTICAL);
+                ll.addView(skill_name_label);
                 ll.addView(skill_name);
+                ll.addView(proficiency_label);
                 ll.addView(proficiency);
                 //ll.addView(cgpa);
                 //ll.addView(institute);
@@ -173,8 +187,16 @@ public class FormSkill extends AppCompatActivity {
                     }
                 });
 
-                builder.show();
+//                builder.show();
 
+                Dialog d = builder.setView(ll).create();
+                d.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                lp.copyFrom(d.getWindow().getAttributes());
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = WindowManager.LayoutParams.MATCH_PARENT;  // or try WRAP_CONTENT
+                d.show();
+                d.getWindow().setAttributes(lp);
             }
         });
 
