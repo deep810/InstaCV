@@ -1,9 +1,11 @@
 package activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.multidex.MultiDex;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -23,6 +25,8 @@ import com.kinvey.android.Client;
 
 import com.example.vishwashrisairm.materialdesign.R;
 
+import utils.Utils;
+
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
 
     private Toolbar mToolbar;
@@ -32,9 +36,27 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     private String TAG = "Analytics: ";
     private String name = "main Activity";
+    public static final String PREF_USER_FIRST_TIME = "user_first_time";
+    boolean isUserFirstTime;
+
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        Set to onboard activity if the value of isFirstTime user obtained from shared preference is true
+        isUserFirstTime = Boolean.valueOf(Utils.readSharedSetting(MainActivity.this, PREF_USER_FIRST_TIME, "true"));
+        Intent introIntent = new Intent(MainActivity.this, OnboardActivity.class);
+        introIntent.putExtra(PREF_USER_FIRST_TIME, isUserFirstTime);
+        if (isUserFirstTime)
+            startActivity(introIntent);
+
         setContentView(R.layout.activity_main);
 
         AnalyticsApplication appli = (AnalyticsApplication) getApplication();
