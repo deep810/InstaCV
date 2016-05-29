@@ -189,7 +189,7 @@ public class FormSkill extends AppCompatActivity {
 
 //                builder.show();
 
-                Dialog d = builder.setView(ll).create();
+                Dialog d = builder.create();
                 d.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
                 WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
                 lp.copyFrom(d.getWindow().getAttributes());

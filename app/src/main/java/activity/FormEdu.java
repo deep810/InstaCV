@@ -212,12 +212,13 @@ public class FormEdu extends AppCompatActivity {
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+                    dialog.dismiss();
+                  dialog.cancel();
                     }
                 });
 
 //                builder.show();
-                Dialog d = builder.setView(ll).create();
+                Dialog d = builder.create();
                 d.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
                 WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
                 lp.copyFrom(d.getWindow().getAttributes());
